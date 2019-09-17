@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/giantswarm/kubernetes-cluster-autoscaler.svg?style=shield)](https://circleci.com/gh/giantswarm/kubernetes-cluster-autoscaler)
+[![CircleCI](https://circleci.com/gh/giantswarm/cluster-autoscaler-app.svg?style=shield)](https://circleci.com/gh/giantswarm/cluster-autoscaler-app)
 
-# kubernetes-cluster-autoscaler
+# cluster-autoscaler-app
 Helm Chart for cluster-autoscaler in Tenant Clusters
