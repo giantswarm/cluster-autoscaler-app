@@ -17,8 +17,8 @@ configmap:
 
 image:
   registry: quay.io
-  repository: giantswarm/cluster-autoscaler
-  tag: v1.14.3
+  name: giantswarm/cluster-autoscaler
+  tag: v1.15.2
 
 cluster:
   id: "test-cluster"
