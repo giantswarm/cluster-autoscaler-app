@@ -12,6 +12,12 @@ e2eTest: &e2eTest
         at: .
 
     - run:
+        name: Get kubectl binary
+        command: |
+          curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+          chmod +x ./kubectl
+
+    - run:
         name: Get e2ectl binary
         command: |
           wget -q $(curl -sS https://api.github.com/repos/giantswarm/e2ectl/releases/latest | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
@@ -21,6 +27,11 @@ e2eTest: &e2eTest
         command: |
           ./e2ectl cluster create
           cp $(./e2ectl kubeconfig path) ${E2E_TEST_DIR}/kubeconfig
+
+    - run:
+        name: labeling master node with kubernetes.io/role as same as production
+        command: |
+          kubectl label --all nodes node-role.kubernetes.io/master=""
 
     - run:
         name: Run test
