@@ -31,7 +31,7 @@ e2eTest: &e2eTest
     - run:
         name: labeling master node with kubernetes.io/role as same as production
         command: |
-          kubectl label --all nodes node-role.kubernetes.io/master=""
+          ./kubectl label --all nodes node-role.kubernetes.io/master=""
 
     - run:
         name: Run test
