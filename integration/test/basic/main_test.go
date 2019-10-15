@@ -17,12 +17,12 @@ import (
 	"github.com/giantswarm/micrologger"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/giantswarm/coredns-app/integration/templates"
+	"github.com/giantswarm/cluster-autoscaler-app/integration/templates"
 )
 
 const (
-	coreDNSName = "coredns"
-	chartName   = "coredns-app"
+	Name      = "cluster-autoscaler"
+	chartName = "cluster-autoscaler-app"
 )
 
 const (
@@ -84,7 +84,7 @@ func init() {
 		c := helmclient.Config{
 			Logger:     l,
 			K8sClient:  k8sClients.K8sClient(),
-			RestConfig: k8sClients.RestConfig(),
+			RestConfig: k8sClients.RESTConfig(),
 
 			TillerNamespace: "giantswarm",
 		}
@@ -102,27 +102,26 @@ func init() {
 
 			App: basicapp.Chart{
 				Name:        chartName,
-				ChartValues: templates.CoreDNSValues,
+				ChartValues: templates.ClusterAutoScalerValues,
 				Namespace:   metav1.NamespaceSystem,
 				URL:         tarballURL,
 			},
 			ChartResources: basicapp.ChartResources{
 				Deployments: []basicapp.Deployment{
 					{
-						Name:      coreDNSName,
+						Name:      Name,
 						Namespace: metav1.NamespaceSystem,
 						DeploymentLabels: map[string]string{
 							"giantswarm.io/service-type": "managed",
-							"k8s-app":                    coreDNSName,
-							"kubernetes.io/name":         "CoreDNS",
+							"app":                        Name,
 						},
 						MatchLabels: map[string]string{
-							"k8s-app": coreDNSName,
+							"giantswarm.io/service-type": "managed",
+							"app":                        Name,
 						},
 						PodLabels: map[string]string{
 							"giantswarm.io/service-type": "managed",
-							"k8s-app":                    coreDNSName,
-							"kubernetes.io/name":         "CoreDNS",
+							"app":                        Name,
 						},
 					},
 				},
