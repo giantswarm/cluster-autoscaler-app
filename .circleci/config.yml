@@ -29,7 +29,7 @@ e2eTest: &e2eTest
           cp $(./e2ectl kubeconfig path) ${E2E_TEST_DIR}/kubeconfig
 
     - run:
-        name: labeling master node with kubernetes.io/role as same as production
+        name: labeling master node with kubernetes.io/role to match production
         command: |
           export KUBECONFIG=$(./e2ectl kubeconfig path)
           ./kubectl label --all nodes kubernetes.io/role=master
