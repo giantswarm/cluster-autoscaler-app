@@ -4,7 +4,7 @@
 
 Helm chart for Kubernetes Cluster Autoscaler running in Tenant Clusters
 
-* Installs the [kubernetes-metrics-server].
+* Installs the [kubernetes-cluster-autoscaler].
 
 ## Deployment
 
