@@ -20,5 +20,5 @@ image:
   name: giantswarm/cluster-autoscaler
   tag: v1.15.2
 
-cluster:
-  id: "test-cluster"
+clusterID:
+  "test-cluster"
