@@ -41,15 +41,33 @@ spec:
           command:
             - ./cluster-autoscaler
             - --v=4
-            - --cloud-provider={{ .Values.configmap.provider }}
-            - --expander={{ .Values.configmap.expander }}
+            - --cloud-provider={{ .Values.provider }}
             - --logtostderr=true
             - --stderrthreshold=info
-            {{- if eq .Values.configmap.provider "aws" }}
-            - --node-group-auto-discovery=asg:tag={{ tpl (join "," .Values.configmap.autoDiscovery.tags) . }}
+            {{- if eq .Values.provider "azure" }}
+            {{- if .Values.autoscalingGroups }}
+            {{- range .Values.autoscalingGroups }}
+            - --nodes={{ printf "%s:%s:%s-%s" .minSize .maxSize $.Values.clusterID "worker" }}
             {{- end }}
-            {{- range $key, $value := .Values.configmap.extraArgs }}
+            {{- end }}
+            {{- end }}
+            {{- if eq .Values.provider "aws" }}
+            - --node-group-auto-discovery=asg:tag={{ tpl (join "," .Values.autoDiscovery.tags) . }}
+            {{- end }}
+            {{- range $key, $value := .Values.extraArgs }}
             - --{{ $key }}={{ $value }}
+            {{- end }}
+
+          env:
+            {{- if eq .Values.provider "azure" }}
+            - name: ARM_SUBSCRIPTION_ID
+              value: {{ .Values.subscriptionID }}
+            - name: ARM_RESOURCE_GROUP
+              value: {{ .Values.clusterID }}
+            - name: ARM_USE_MANAGED_IDENTITY_EXTENSION
+              value: {{ quote .Values.managedIdentity }}
+            - name: ARM_VM_TYPE
+              value: {{ .Values.azureVMType }}
             {{- end }}
 
           volumeMounts:
