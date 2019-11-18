@@ -13,9 +13,14 @@ image:
   name: giantswarm/cluster-autoscaler
   tag: v1.15.2
 
-clusterID:
-  "test-cluster"
+clusterID: "test-cluster"
 provider: "changeme"
+
+azure:
+  subscriptionID: "changeme"
+  managedIdentity: true
+  vmType: VMSS
+
 extraArgs:
   scan-interval: 10s
   scale-down-utilization-threshold: 0.65

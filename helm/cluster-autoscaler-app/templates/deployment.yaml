@@ -56,13 +56,13 @@ spec:
           env:
             {{- if eq .Values.provider "azure" }}
             - name: ARM_SUBSCRIPTION_ID
-              value: {{ .Values.subscriptionID }}
+              value: {{ .Values.azure.subscriptionID }}
             - name: ARM_RESOURCE_GROUP
               value: {{ .Values.clusterID }}
             - name: ARM_USE_MANAGED_IDENTITY_EXTENSION
-              value: {{ quote .Values.managedIdentity }}
+              value: {{ quote .Values.azure.managedIdentity }}
             - name: ARM_VM_TYPE
-              value: {{ .Values.azureVMType }}
+              value: {{ .Values.azure.vmType }}
             {{- end }}
 
           volumeMounts:
