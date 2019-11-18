@@ -8,13 +8,6 @@ groupID: 65534
 port: 8085
 
 # Make sure to update the docs at https://github.com/giantswarm/docs/blob/master/src/layouts/shortcodes/autoscaler_utilization_threshold.html if you change the defaults below
-configmap:
-  expander: "least-waste"
-  scanInterval: "10s"
-  scaleDownUtilizationThreshold: 0.65
-  skipNodesWithLocalStorage: "false"
-  skipNodesWithSystemPods: "true"
-
 image:
   registry: quay.io
   name: giantswarm/cluster-autoscaler
@@ -22,3 +15,20 @@ image:
 
 clusterID:
   "test-cluster"
+
+extraArgs:
+  scan-interval: 10s
+  scale-down-utilization-threshold: 0.65
+  skip-nodes-with-system-pods: true
+  skip-nodes-with-local-storage: false
+  expander: least-waste
+  # write-status-configmap: true
+  # leader-elect: true
+  # scale-down-enabled: true
+  # balance-similar-node-groups: true
+  # min-replica-count: 2
+  # scale-down-non-empty-candidates-count: 5
+  # max-node-provision-time: 15m0s
+  # scale-down-delay: 10m
+  # scale-down-unneeded-time: 10m
+
