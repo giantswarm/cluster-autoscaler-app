@@ -15,7 +15,7 @@ image:
 
 clusterID:
   "test-cluster"
-
+provider: "changeme"
 extraArgs:
   scan-interval: 10s
   scale-down-utilization-threshold: 0.65
