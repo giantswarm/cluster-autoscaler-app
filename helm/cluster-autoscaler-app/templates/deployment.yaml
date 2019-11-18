@@ -44,15 +44,10 @@ spec:
             - --cloud-provider={{ .Values.provider }}
             - --logtostderr=true
             - --stderrthreshold=info
-            {{- if eq .Values.provider "azure" }}
-            {{- if .Values.autoscalingGroups }}
-            {{- range .Values.autoscalingGroups }}
-            - --nodes={{ printf "%s:%s:%s-%s" .minSize .maxSize $.Values.clusterID "worker" }}
-            {{- end }}
-            {{- end }}
-            {{- end }}
             {{- if eq .Values.provider "aws" }}
-            - --node-group-auto-discovery=asg:tag={{ tpl (join "," .Values.autoDiscovery.tags) . }}
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.clusterID }}
+            {{- else if eq .Values.provider "azure" }}
+            - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.clusterID }}
             {{- end }}
             {{- range $key, $value := .Values.extraArgs }}
             - --{{ $key }}={{ $value }}
