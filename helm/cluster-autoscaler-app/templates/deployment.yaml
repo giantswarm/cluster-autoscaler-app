@@ -42,16 +42,18 @@ spec:
             - ./cluster-autoscaler
             - --v=4
             - --cloud-provider={{ .Values.provider }}
+            - --expander={{ .Values.configmap.expander }}
             - --logtostderr=true
-            - --stderrthreshold=info
             {{- if eq .Values.provider "aws" }}
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.clusterID }}
             {{- else if eq .Values.provider "azure" }}
             - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.clusterID }}
             {{- end }}
-            {{- range $key, $value := .Values.extraArgs }}
-            - --{{ $key }}={{ $value }}
-            {{- end }}
+            - --skip-nodes-with-local-storage={{ .Values.configmap.skipNodesWithLocalStorage }}
+            - --skip-nodes-with-system-pods={{ .Values.configmap.skipNodesWithSystemPods }}
+            - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
+            - --scan-interval={{ .Values.configmap.scanInterval }}
+            - --stderrthreshold=info
 
           env:
             {{- if eq .Values.provider "azure" }}
