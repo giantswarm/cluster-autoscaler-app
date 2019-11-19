@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project's packages adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v1.0.1]
+
+### Changed
+
+- Updated cluster-autoscaler to upstream version [1.16.2](https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.16.2).
+
 ## [v1.0.0]
 
 ### Changed
@@ -17,7 +23,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Updated cluster-autoscaler to upstream version [1.15.2](https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.15.2).
 
-## v0.8.0 
+## [v0.8.0] 
 
 ### Changed
 
