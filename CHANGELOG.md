@@ -11,6 +11,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Updated cluster-autoscaler to upstream version [1.16.2](https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.16.2).
 
+### Added
+
+- Added support for Azure with auto-discovery.
+
 ## [v1.0.0]
 
 ### Changed

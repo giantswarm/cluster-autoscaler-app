@@ -20,5 +20,20 @@ image:
   name: giantswarm/cluster-autoscaler
   tag: v1.16.2
 
-clusterID:
-  "test-cluster"
+# clusterID is dynamic environment value, calculated after cluster creation
+# applies only to Giant Swarm clusters
+clusterID: "test-cluster"
+# provider is dynamic environment value, which comes from application catalog configuration
+# applies only to Giant Swarm clusters
+provider: "aws"
+# azure contains the configuration values required by the azure provider and can be overridden
+# with custom values
+azure:
+  # Azure subscription where the VMSS are created
+  subscriptionID: "changeme"
+  # Whether or not to use the credentials automatically provisioned on the VMSS instances
+  managedIdentity: true
+  # Type of deployment used on Azure
+  vmType: VMSS
+
+

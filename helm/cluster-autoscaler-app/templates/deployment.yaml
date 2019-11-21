@@ -41,15 +41,32 @@ spec:
           command:
             - ./cluster-autoscaler
             - --v=4
-            - --cloud-provider=aws
+            - --cloud-provider={{ .Values.provider }}
             - --expander={{ .Values.configmap.expander }}
             - --logtostderr=true
+            {{- if eq .Values.provider "aws" }}
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.clusterID }}
+            {{- else if eq .Values.provider "azure" }}
+            - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.clusterID }}
+            {{- end }}
             - --skip-nodes-with-local-storage={{ .Values.configmap.skipNodesWithLocalStorage }}
             - --skip-nodes-with-system-pods={{ .Values.configmap.skipNodesWithSystemPods }}
             - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
             - --scan-interval={{ .Values.configmap.scanInterval }}
             - --stderrthreshold=info
+
+          env:
+            {{- if eq .Values.provider "azure" }}
+            - name: ARM_SUBSCRIPTION_ID
+              value: {{ .Values.azure.subscriptionID }}
+            - name: ARM_RESOURCE_GROUP
+              value: {{ .Values.clusterID }}
+            - name: ARM_USE_MANAGED_IDENTITY_EXTENSION
+              value: {{ quote .Values.azure.managedIdentity }}
+            - name: ARM_VM_TYPE
+              value: {{ .Values.azure.vmType }}
+            {{- end }}
+
           volumeMounts:
             - name: ssl-certs
               mountPath: /etc/ssl/certs/ca-certificates.crt
