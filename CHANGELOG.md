@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project's packages adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] 2019-12-24
+
+### Changed
+
+- Remove CPU limits.
+
 ## [v1.1.0]
 
 ### Changed
@@ -31,7 +37,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ### Changed
 
-- Change prioty class to `giantswarm-critical`.
+- Change priority class to `giantswarm-critical`.
 
 
 ## [v0.7.0]
