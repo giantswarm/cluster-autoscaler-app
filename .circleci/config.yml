@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  architect: giantswarm/architect@0.4.3
+  architect: giantswarm/architect@0.4.5
 
 e2eTest: &e2eTest
   machine: true
@@ -44,7 +44,7 @@ e2eTest: &e2eTest
             -e E2E_KUBECONFIG=/e2e/kubeconfig \
             -e CIRCLE_SHA1=${CIRCLE_SHA1} \
             -w /go/src/github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME} \
-            golang:1 go test -v -tags k8srequired ./${E2E_TEST_DIR}/
+            golang:1 go test -timeout 20m -v -tags k8srequired ./${E2E_TEST_DIR}/
     - run:
         name: Export logs
         command: |
@@ -86,12 +86,8 @@ workflows:
     jobs:
       - build
 
-      - e2eTestBasic:
-          requires:
-            - build
-
       - architect/push-to-app-catalog:
-          name: "package and push cluster-autoscaler-app chart"
+          name: push-to-default-app-catalog
           app_catalog: "default-catalog"
           app_catalog_test: "default-test-catalog"
           chart: "cluster-autoscaler-app"
@@ -99,3 +95,12 @@ workflows:
           filters:
             tags:
               only: /^v.*/
+
+      - e2eTestBasic:
+          requires:
+            - build
+            - push-to-default-app-catalog
+          filters:
+            branches:
+              ignore:
+                - master
