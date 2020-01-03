@@ -15,8 +15,6 @@ import (
 	"github.com/giantswarm/k8sclient"
 	"github.com/giantswarm/micrologger"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-
-	"github.com/giantswarm/cluster-autoscaler-app/integration/templates"
 )
 
 const (
@@ -100,10 +98,9 @@ func init() {
 			Logger:     l,
 
 			App: basicapp.Chart{
-				Name:        chartName,
-				ChartValues: templates.ClusterAutoScalerValues,
-				Namespace:   metav1.NamespaceSystem,
-				URL:         tarballURL,
+				Name:      chartName,
+				Namespace: metav1.NamespaceSystem,
+				URL:       tarballURL,
 			},
 			ChartResources: basicapp.ChartResources{
 				Deployments: []basicapp.Deployment{
