@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project's packages adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v1.1.2] 2020-01-03
+
+### Changed
+
+- Updated manifests for Kubernetes 1.16.
+
 ## [1.1.1] 2019-12-24
 
 ### Changed
@@ -68,6 +74,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
+[v1.1.2]: https://github.com/giantswarm/cluster-autoscaler-app/pull/13
+[v1.1.1]: https://github.com/giantswarm/cluster-autoscaler-app/pull/11
 [v1.0.0]: https://github.com/giantswarm/cluster-autoscaler-app/pull/6
 [v0.9.0]: https://github.com/giantswarm/kubernetes-cluster-autoscaler/pull/27
 [v0.8.0]: https://github.com/giantswarm/kubernetes-cluster-autoscaler/pull/26 
