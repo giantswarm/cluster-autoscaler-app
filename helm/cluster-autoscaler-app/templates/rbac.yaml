@@ -81,7 +81,7 @@ rules:
 - apiGroups:
   - storage.k8s.io
   resources:
-  - storageclasses
+  - storageclasses, csinodes
   verbs:
   - watch
   - list
