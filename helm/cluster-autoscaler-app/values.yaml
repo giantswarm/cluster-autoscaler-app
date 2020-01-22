@@ -18,7 +18,8 @@ configmap:
 image:
   registry: quay.io
   name: giantswarm/cluster-autoscaler
-  tag: v1.16.2
+  # when updating the tag make sure to also keep appVersion in Chart.yaml in sync
+  tag: v1.16.3
 
 # clusterID is dynamic environment value, calculated after cluster creation
 # applies only to Giant Swarm clusters
