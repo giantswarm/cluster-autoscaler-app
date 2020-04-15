@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project's packages adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v1.1.5] 2020-04-14
+
+### Changed
+
+- Lower `scaleDownUtilizationThreshold` to 0.5.
+
 ## [v1.1.4] 2020-02-05
 
 - Increase memory request and limits to 400MB.
@@ -84,6 +90,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
+[v1.1.5]: https://github.com/giantswarm/cluster-autoscaler-app/pull/20
 [v1.1.4]: https://github.com/giantswarm/cluster-autoscaler-app/pull/17
 [v1.1.3]: https://github.com/giantswarm/cluster-autoscaler-app/pull/14
 [v1.1.2]: https://github.com/giantswarm/cluster-autoscaler-app/pull/13

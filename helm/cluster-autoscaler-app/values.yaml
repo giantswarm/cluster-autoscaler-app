@@ -11,7 +11,7 @@ port: 8085
 configmap:
   expander: "least-waste"
   scanInterval: "10s"
-  scaleDownUtilizationThreshold: 0.65
+  scaleDownUtilizationThreshold: 0.5
   skipNodesWithLocalStorage: "false"
   skipNodesWithSystemPods: "true"
 
