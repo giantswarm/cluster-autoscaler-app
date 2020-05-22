@@ -35,5 +35,3 @@ azure:
   managedIdentity: true
   # Type of deployment used on Azure
   vmType: VMSS
-
-
