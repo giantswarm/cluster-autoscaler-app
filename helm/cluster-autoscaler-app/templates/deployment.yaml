@@ -45,6 +45,7 @@ spec:
             - --logtostderr=true
             {{- if eq .Values.provider "aws" }}
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.clusterID }}
+            - --aws-use-static-instance-list=true
             {{- else if eq .Values.provider "azure" }}
             - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.clusterID }}
             {{- end }}
