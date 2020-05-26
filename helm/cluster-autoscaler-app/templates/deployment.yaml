@@ -53,6 +53,7 @@ spec:
             {{- end }}
             - --skip-nodes-with-local-storage={{ .Values.configmap.skipNodesWithLocalStorage }}
             - --skip-nodes-with-system-pods={{ .Values.configmap.skipNodesWithSystemPods }}
+            - --scale-down-unneeded-time={{ .Values.configmap.scaleDownUnneededTime }}
             - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
             - --scan-interval={{ .Values.configmap.scanInterval }}
             - --stderrthreshold=info
