@@ -2,9 +2,7 @@
 
 # cluster-autoscaler-app
 
-Helm chart for Kubernetes Cluster Autoscaler running in Tenant Clusters
-
-* Installs the [kubernetes-cluster-autoscaler].
+Helm chart for the Kubernetes [Cluster Autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler) running in Giant Swarm tenant clusters.
 
 ## Deployment
 
@@ -16,29 +14,29 @@ Helm chart for Kubernetes Cluster Autoscaler running in Tenant Clusters
 
 To install the chart locally:
 
-```bash
-$ git clone https://github.com/giantswarm/cluster-autoscaler-app.git
-$ cd cluster-autoscaler-app
-$ helm install helm/cluster-autoscaler-app
+```nohighlight
+git clone https://github.com/giantswarm/cluster-autoscaler-app.git
+cd cluster-autoscaler-app
+helm install helm/cluster-autoscaler-app
 ```
 
 Provide a custom `values.yaml`:
 
-```bash
-$ helm install cluster-autoscaler-app -f values.yaml
+```nohighlight
+helm install cluster-autoscaler-app -f values.yaml
 ```
 
- ## Release Process
+## Release Process
 
 * Ensure CHANGELOG.md is up to date.
-* Create a new GitHub release with the version e.g. `v0.1.0` and link the
+* Create a new GitHub release with the version e.g. `v1.16.1` and link the
 changelog entry.
+  * Make sure the Major and Minor versions match with the upstream version.
 * This will push a new git tag and trigger a new tarball to be pushed to the
-[default-catalog].  
+[default-catalog].
 * Update [cluster-operator] with the new version.
 
 [app-operator]: https://github.com/giantswarm/app-operator
 [cluster-operator]: https://github.com/giantswarm/cluster-operator
 [default-catalog]: https://github.com/giantswarm/default-catalog
 [default-test-catalog]: https://github.com/giantswarm/default-test-catalog
-[kubernetes-cluster-autoscaler]: https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler#cluster-autoscaler
