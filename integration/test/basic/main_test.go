@@ -16,6 +16,8 @@ import (
 	"github.com/giantswarm/k8sclient"
 	"github.com/giantswarm/micrologger"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+
+	"github.com/giantswarm/cluster-autoscaler-app/integration/templates"
 )
 
 const (
