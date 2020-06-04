@@ -104,9 +104,10 @@ func init() {
 			Logger:     l,
 
 			App: basicapp.Chart{
-				Name:      appName,
-				Namespace: metav1.NamespaceSystem,
-				URL:       tarballURL,
+				ChartValues: templates.ClusterAutoscalerValues,
+				Name:        appName,
+				Namespace:   metav1.NamespaceSystem,
+				URL:         tarballURL,
 			},
 			ChartResources: basicapp.ChartResources{
 				Deployments: []basicapp.Deployment{
