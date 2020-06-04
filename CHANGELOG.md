@@ -5,19 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project's packages adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [v1.16.0](https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.1.4...v1.16.0) 2020-05-26
 
-### Fixed
-
-- Fix role ref in cluster role binding.
-
-## [v1.1.5] 2020-04-14
+Note that with this release we start to align the versioning scheme to the upstream project, so our v1.16.x represents upstream v1.16.x.
 
 ### Changed
 
+- Use cluster-autoscaler version v1.16.5.
+  - This version introduces a new method to read AWS EC2 instance type details from an AWS API. Since this API is not reachable from the AWS China regions, the autoscaler is started with the `--aws-use-static-instance-list=true` flag.
+- Set `scan-interval` to 30 seconds (from 10 seconds) to save resources.
+- Set `scale-down-unneeded-time` to 5 minutes (from the default of 10 minutes) to release unneeded nodes earlier.
 - Lower `scaleDownUtilizationThreshold` to 0.5.
 
 ## [v1.1.4] 2020-02-05
+
+### Changed
 
 - Increase memory request and limits to 400MB.
 

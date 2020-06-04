@@ -45,11 +45,15 @@ spec:
             - --logtostderr=true
             {{- if eq .Values.provider "aws" }}
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.clusterID }}
+            # Turning runtime instance info acquisition off because of
+            # https://github.com/kubernetes/autoscaler/issues/3076
+            - --aws-use-static-instance-list=true
             {{- else if eq .Values.provider "azure" }}
             - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.clusterID }}
             {{- end }}
             - --skip-nodes-with-local-storage={{ .Values.configmap.skipNodesWithLocalStorage }}
             - --skip-nodes-with-system-pods={{ .Values.configmap.skipNodesWithSystemPods }}
+            - --scale-down-unneeded-time={{ .Values.configmap.scaleDownUnneededTime }}
             - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
             - --scan-interval={{ .Values.configmap.scanInterval }}
             - --stderrthreshold=info
