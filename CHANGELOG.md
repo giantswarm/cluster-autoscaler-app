@@ -98,7 +98,9 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[v1.1.5]: https://github.com/giantswarm/cluster-autoscaler-app/pull/20
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.1.5...HEAD
+
+[v1.1.5]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.1.4...v1.1.5
 [v1.1.4]: https://github.com/giantswarm/cluster-autoscaler-app/pull/17
 [v1.1.3]: https://github.com/giantswarm/cluster-autoscaler-app/pull/14
 [v1.1.2]: https://github.com/giantswarm/cluster-autoscaler-app/pull/13
