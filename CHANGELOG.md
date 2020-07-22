@@ -11,6 +11,9 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 ### Added
 - Added worflows for a automatic release generation.
 
+### Updated
+- Updated cluster-autoscaler to version `1.17.2`.
+
 ## [v1.16.0](https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.1.4...v1.16.0) 2020-05-26
 
 Note that with this release we start to align the versioning scheme to the upstream project, so our v1.16.x represents upstream v1.16.x.
