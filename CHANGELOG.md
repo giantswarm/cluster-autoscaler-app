@@ -8,6 +8,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.17.3] - 2020-07-30
+
 ### Updated
 
 - Updated cluster-autoscaler to version `1.17.3`.
@@ -113,7 +115,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.17.2...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.17.3...HEAD
+[1.17.3]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.17.2...v1.17.3
 [1.17.2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.1.5...v1.17.2
 [v1.1.5]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.1.4...v1.1.5
 [v1.1.4]: https://github.com/giantswarm/cluster-autoscaler-app/pull/17
