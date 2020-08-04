@@ -8,8 +8,8 @@ metadata:
     # kubernetes.io/cluster-service are kept to be displayed in kubectl cluster-info
     kubernetes.io/cluster-service: "true"
     kubernetes.io/name: {{ .Values.name }}
-  annotations:
     giantswarm.io/monitoring: "true"
+  annotations:
     giantswarm.io/monitoring-path: /metrics
     giantswarm.io/monitoring-port: "8085"
     prometheus.io/scrape: "true"
