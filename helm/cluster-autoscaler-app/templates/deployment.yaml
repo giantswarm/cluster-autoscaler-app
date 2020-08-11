@@ -4,18 +4,16 @@ metadata:
   name: {{ .Values.name }}
   namespace: {{ .Values.namespace }}
   labels:
-    giantswarm.io/service-type: "{{ .Values.serviceType }}"
-    app: {{ .Values.name }}
+    {{- include "labels.common" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.name }}
+      {{- include "labels.selector" . | nindent 6 }}
   template:
     metadata:
       labels:
-        giantswarm.io/service-type: "{{ .Values.serviceType }}"
-        app: {{ .Values.name }}
+        {{- include "labels.common" . | nindent 8 }}
     spec:
       serviceAccountName: {{ .Values.name }}
       securityContext:
@@ -60,9 +58,8 @@ spec:
             - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
             - --scan-interval={{ .Values.configmap.scanInterval }}
             - --stderrthreshold=info
-
+          {{- if eq .Values.provider "azure" }}
           env:
-            {{- if eq .Values.provider "azure" }}
             - name: ARM_SUBSCRIPTION_ID
               value: {{ .Values.azure.subscriptionID }}
             - name: ARM_RESOURCE_GROUP
@@ -71,8 +68,7 @@ spec:
               value: {{ quote .Values.azure.managedIdentity }}
             - name: ARM_VM_TYPE
               value: {{ .Values.azure.vmType }}
-            {{- end }}
-
+          {{- end }}
           volumeMounts:
             - name: ssl-certs
               mountPath: /etc/ssl/certs/ca-certificates.crt
