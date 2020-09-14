@@ -33,7 +33,7 @@ provider: "aws"
 # with custom values
 azure:
   # Azure subscription where the VMSS are created
-  subscriptionID: "changeme"
+  subscriptionID: ""
   # Whether or not to use the credentials automatically provisioned on the VMSS instances
   managedIdentity: true
   # Type of deployment used on Azure
