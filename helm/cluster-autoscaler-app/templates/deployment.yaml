@@ -60,8 +60,10 @@ spec:
             - --stderrthreshold=info
           {{- if eq .Values.provider "azure" }}
           env:
+            {{- if ne .Values.azure.subscriptionID "" }}
             - name: ARM_SUBSCRIPTION_ID
               value: {{ .Values.azure.subscriptionID }}
+            {{- end }}
             - name: ARM_RESOURCE_GROUP
               value: {{ .Values.clusterID }}
             - name: ARM_USE_MANAGED_IDENTITY_EXTENSION

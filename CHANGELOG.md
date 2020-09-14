@@ -11,6 +11,9 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 ### Added
 - Added monitoring annotations and common labels.
 
+### Changed
+- The `ARM_SUBSCRIPTION_ID` env variable is not set when the customer is not giving it a value. The `cluster-autoscaler` detects the value from the VM it is running on.
+
 ## [1.17.3] - 2020-07-30
 
 ### Updated
