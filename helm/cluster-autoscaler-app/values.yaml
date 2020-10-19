@@ -21,7 +21,7 @@ e2e: false
 image:
   registry: quay.io
   name: giantswarm/cluster-autoscaler
-  tag: v1.18.2
+  tag: v1.17.3
 
 # clusterID is dynamic environment value, calculated after cluster creation
 # applies only to Giant Swarm clusters
