@@ -16,8 +16,6 @@ configmap:
   skipNodesWithLocalStorage: "false"
   skipNodesWithSystemPods: "true"
 
-e2e: false
-
 image:
   registry: quay.io
   name: giantswarm/cluster-autoscaler
