@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  architect: giantswarm/architect@0.10.0
+  architect: giantswarm/architect@0.17.0
 
 workflows:
   version: 2
@@ -20,6 +20,7 @@ workflows:
       - architect/integration-test:
           context: architect
           name: basic-integration-test
+          install-app-platform: true
           setup-script: "integration/test/basic/setup.sh"
           test-dir: "integration/test/basic"
           filters:
