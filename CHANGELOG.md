@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Fixed
+
+- Remove priority class used in integration tests that is no longer required.
+
 ## [1.19.1] - 2020-11-03
 
 ### Changed
