@@ -64,6 +64,7 @@ func TestMain(m *testing.M) {
 				Name:          appName,
 				Namespace:     metav1.NamespaceSystem,
 				SHA:           env.CircleSHA(),
+				ValuesYAML:    "e2e: true",
 				WaitForDeploy: true,
 			},
 		}
