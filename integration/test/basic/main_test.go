@@ -60,10 +60,12 @@ func TestMain(m *testing.M) {
 	{
 		apps := []apptest.App{
 			{
-				CatalogName:   catalogName,
-				Name:          appName,
-				Namespace:     metav1.NamespaceSystem,
-				SHA:           env.CircleSHA(),
+				CatalogName: catalogName,
+				Name:        appName,
+				Namespace:   metav1.NamespaceSystem,
+				SHA:         env.CircleSHA(),
+				// ValuesYAML sets e2e to true so auto discovery is disabled.
+				// This allows the chart to be installed in a KIND cluster.
 				ValuesYAML:    "e2e: true",
 				WaitForDeploy: true,
 			},
