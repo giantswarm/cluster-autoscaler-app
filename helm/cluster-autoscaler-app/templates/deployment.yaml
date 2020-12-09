@@ -43,6 +43,13 @@ spec:
             - --logtostderr=true
             # Don't use auto discovery in integration tests.
             {{- if eq .Values.e2e false }}
+            {{- if .Values.Installation }}
+            {{- if eq .Values.Istallation.V1.Provider.Kind "aws" }}
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.Installation.V1.Name }}
+            {{- else if eq .Values.Installation.V1.Provider.Kind "azure" }}
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.clusterID }}
+            {{- end }}
+            {{- else }}
             {{- if eq .Values.provider "aws" }}
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.clusterID }}
             # Turning runtime instance info acquisition off because of
@@ -52,14 +59,18 @@ spec:
             - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.clusterID }}
             {{- end }}
             {{- end }}
+            {{- end }}
             - --skip-nodes-with-local-storage={{ .Values.configmap.skipNodesWithLocalStorage }}
             - --skip-nodes-with-system-pods={{ .Values.configmap.skipNodesWithSystemPods }}
             - --scale-down-unneeded-time={{ .Values.configmap.scaleDownUnneededTime }}
             - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
             - --scan-interval={{ .Values.configmap.scanInterval }}
             - --stderrthreshold=info
-          {{- if eq .Values.provider "azure" }}
           env:
+          {{- if .Values.Installation }}
+          # add configuration after availability sets migration to scale sets done  
+          {{- else }}
+          {{- if eq .Values.provider "azure" }}
             {{- if ne .Values.azure.subscriptionID "" }}
             - name: ARM_SUBSCRIPTION_ID
               value: {{ .Values.azure.subscriptionID }}
@@ -70,6 +81,7 @@ spec:
               value: {{ quote .Values.azure.managedIdentity }}
             - name: ARM_VM_TYPE
               value: {{ .Values.azure.vmType }}
+          {{- end }}
           {{- end }}
           volumeMounts:
             - name: ssl-certs
