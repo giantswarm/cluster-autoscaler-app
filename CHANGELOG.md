@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Push app to the control plane app catalog.
+
 ### Fixed
 
 - Remove priority class used in integration tests that is no longer required.
