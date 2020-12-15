@@ -44,7 +44,7 @@ spec:
             # Don't use auto discovery in integration tests.
             {{- if eq .Values.e2e false }}
             {{- if .Values.Installation }}
-            {{- if eq .Values.Istallation.V1.Provider.Kind "aws" }}
+            {{- if eq .Values.Installation.V1.Provider.Kind "aws" }}
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.Installation.V1.Name }}
             {{- else if eq .Values.Installation.V1.Provider.Kind "azure" }}
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.clusterID }}
