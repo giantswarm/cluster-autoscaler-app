@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Push app to the control plane app catalog.
+
 ### Changed
 
 - Update templates to run app in Control-Plane cluster.
