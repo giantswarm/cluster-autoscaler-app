@@ -68,7 +68,14 @@ spec:
             - --stderrthreshold=info
           env:
           {{- if .Values.Installation }}
-          # add configuration after availability sets migration to scale sets done  
+          {{- if eq .Values.provider "azure" }}
+            - name: ARM_RESOURCE_GROUP
+              value: {{ .Values.Installation.V1.Name }}
+            - name: ARM_USE_MANAGED_IDENTITY_EXTENSION
+              value: {{ quote .Values.azure.managedIdentity }}
+            - name: ARM_VM_TYPE
+              value: {{ .Values.azure.vmType }}
+          {{- end }}
           {{- else }}
           {{- if eq .Values.provider "azure" }}
             {{- if ne .Values.azure.subscriptionID "" }}
