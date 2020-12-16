@@ -12,6 +12,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Push app to the control plane app catalog.
 
+### Changed
+
+- Update templates to run app in Control-Plane cluster.
+
 ### Fixed
 
 - Remove priority class used in integration tests that is no longer required.
