@@ -38,18 +38,19 @@ spec:
           command:
             - ./cluster-autoscaler
             - --v=4
-            - --cloud-provider={{ .Values.provider }}
             - --expander={{ .Values.configmap.expander }}
             - --logtostderr=true
             # Don't use auto discovery in integration tests.
             {{- if eq .Values.e2e false }}
             {{- if .Values.Installation }}
+            - --cloud-provider={{ .Values.Installation.V1.Provider.Kind }}
             {{- if eq .Values.Installation.V1.Provider.Kind "aws" }}
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.Installation.V1.Name }}
             {{- else if eq .Values.Installation.V1.Provider.Kind "azure" }}
-            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.clusterID }}
+            - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.Installation.V1.Name }}
             {{- end }}
             {{- else }}
+            - --cloud-provider={{ .Values.provider }}
             {{- if eq .Values.provider "aws" }}
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.clusterID }}
             # Turning runtime instance info acquisition off because of
@@ -68,7 +69,7 @@ spec:
             - --stderrthreshold=info
           env:
           {{- if .Values.Installation }}
-          {{- if eq .Values.provider "azure" }}
+          {{- if eq .Values.Installation.V1.Provider.Kind "azure" }}
             - name: ARM_RESOURCE_GROUP
               value: {{ .Values.Installation.V1.Name }}
             - name: ARM_USE_MANAGED_IDENTITY_EXTENSION
