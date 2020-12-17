@@ -11,6 +11,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 ### Added
 
 - Push app to the control plane app catalog.
+- Push app to the aws/azure app-collections.
 
 ### Changed
 
