@@ -41,3 +41,33 @@ workflows:
                 - master
           requires:
             - push-to-default-app-catalog
+
+      # deploy to aws installations (only tags)
+      - architect/push-to-app-collection:
+          name: push-cluster-autoscaler-app-to-aws-app-collection
+          app_name: "cluster-autoscaler-app"
+          app_namespace: "kube-system"
+          app_collection_repo: "aws-app-collection"
+          unique: "true"
+          requires:
+            - basic-integration-test
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
+
+      # deploy to azure installations (only tags)
+      - architect/push-to-app-collection:
+          name: push-cluster-autoscaler-app-to-azure-app-collection
+          app_name: "cluster-autoscaler-app"
+          app_namespace: "kube-system"
+          app_collection_repo: "azure-app-collection"
+          unique: "true"
+          requires:
+            - basic-integration-test
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
