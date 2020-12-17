@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix circleci job for pushing app to app collections.
+
 ## [1.19.0] - 2020-12-17
 
 ### Added
