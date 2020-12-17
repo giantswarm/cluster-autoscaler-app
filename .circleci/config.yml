@@ -41,6 +41,7 @@ workflows:
                 - master
           requires:
             - push-to-default-app-catalog
+            - push-to-control-plane-app-catalog
 
       # deploy to aws installations (only tags)
       - architect/push-to-app-collection:
@@ -50,7 +51,7 @@ workflows:
           app_collection_repo: "aws-app-collection"
           unique: "true"
           requires:
-            - push-to-control-plane-app-catalog
+            - basic-integration-test
           filters:
             branches:
               ignore: /.*/
@@ -65,7 +66,7 @@ workflows:
           app_collection_repo: "azure-app-collection"
           unique: "true"
           requires:
-            - push-to-control-plane-app-catalog
+            - basic-integration-test
           filters:
             branches:
               ignore: /.*/
