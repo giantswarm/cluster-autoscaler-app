@@ -4,3 +4,13 @@ description: A Helm chart for the cluster autoscaler.
 home: https://github.com/giantswarm/cluster-autoscaler-app
 name: cluster-autoscaler-app
 version: [[ .Version ]]
+annotations:
+  application.giantswarm.io/owners: |
+    - catalog: control-plane-catalog
+      team: biscuit
+    - catalog: default
+      provider: aws
+      team: firecracker
+    - catalog: default
+      provider: azure
+      team: celestial
