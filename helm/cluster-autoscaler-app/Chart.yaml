@@ -8,6 +8,9 @@ annotations:
   application.giantswarm.io/owners: |
     - catalog: control-plane-catalog
       team: biscuit
+    - catalog: control-plane-test-catalog
+      provider: aws
+      team: biscuit
     - catalog: default
       provider: aws
       team: firecracker
