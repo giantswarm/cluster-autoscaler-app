@@ -8,6 +8,12 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.20.2] - 2021-03-26
+
+### Changed
+
+- Set docker.io as the default registry
+
 ## [1.20.1] - 2020-12-17
 
 ### Changed
@@ -157,7 +163,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.20.1...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.20.2...HEAD
+[1.20.2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.20.1...v1.20.2
 [1.20.1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.20.0...v1.20.1
 [1.20.0]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.19.1...v1.20.0
 [1.19.1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.18.2...v1.19.1

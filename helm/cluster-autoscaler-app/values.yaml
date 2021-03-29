@@ -19,7 +19,7 @@ configmap:
 e2e: false
 
 image:
-  registry: quay.io
+  registry: docker.io
   name: giantswarm/cluster-autoscaler
   tag: v1.20.0
 
