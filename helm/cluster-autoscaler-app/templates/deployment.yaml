@@ -30,11 +30,7 @@ spec:
         - image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
           name: {{ .Values.name }}
           resources:
-            limits:
-              memory: 400Mi
-            requests:
-              cpu: 100m
-              memory: 400Mi
+            {{- toYaml .Values.resources | nindent 12 }}
           command:
             - ./cluster-autoscaler
             - --v=4
