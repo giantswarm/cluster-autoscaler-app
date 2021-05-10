@@ -30,7 +30,7 @@ spec:
         - image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
           name: {{ .Values.name }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.clusterAutoscalerResources | nindent 12 }}
           command:
             - ./cluster-autoscaler
             - --v=4

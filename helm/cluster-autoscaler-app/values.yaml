@@ -39,7 +39,7 @@ azure:
   # Type of deployment used on Azure
   vmType: VMSS
 
-resources:
+clusterAutoscalerResources:
   limits:
     memory: 400Mi
   requests:
