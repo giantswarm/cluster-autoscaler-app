@@ -38,3 +38,10 @@ azure:
   managedIdentity: true
   # Type of deployment used on Azure
   vmType: VMSS
+
+clusterAutoscalerResources:
+  limits:
+    memory: 400Mi
+  requests:
+    cpu: 100m
+    memory: 400Mi
