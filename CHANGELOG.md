@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Allow users to set container resources
+
 ## [1.20.2] - 2021-03-26
 
 ### Changed
@@ -128,7 +132,7 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Updated cluster-autoscaler to upstream version [1.15.2](https://github.com/kubernetes/autoscaler/releases/tag/cluster-autoscaler-1.15.2).
 
-## [v0.8.0] 
+## [v0.8.0]
 
 ### Changed
 
@@ -180,7 +184,7 @@ Note that with this release we start to align the versioning scheme to the upstr
 [v1.1.0]: https://github.com/giantswarm/cluster-autoscaler-app/pull/9
 [v1.0.0]: https://github.com/giantswarm/cluster-autoscaler-app/pull/6
 [v0.9.0]: https://github.com/giantswarm/kubernetes-cluster-autoscaler/pull/27
-[v0.8.0]: https://github.com/giantswarm/kubernetes-cluster-autoscaler/pull/26 
+[v0.8.0]: https://github.com/giantswarm/kubernetes-cluster-autoscaler/pull/26
 [v0.7.0]: https://github.com/giantswarm/kubernetes-cluster-autoscaler/pull/24
 [v0.6.0]: https://github.com/giantswarm/kubernetes-cluster-autoscaler/pull/23
 [v0.5.0]: https://github.com/giantswarm/kubernetes-cluster-autoscaler/pull/22
