@@ -10,6 +10,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [1.20.3] - 2021-05-27
 
+- Allow users to set container resources
+
 ## [1.19.3] - 2021-05-20
 
 ### Added
