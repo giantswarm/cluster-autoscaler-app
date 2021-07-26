@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Add `VerticalPodAutoscaler` resource to adjust limits automatically.
+
 ## [1.20.3] - 2021-05-27
 
 - Allow users to set container resources
