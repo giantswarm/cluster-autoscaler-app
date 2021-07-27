@@ -8,6 +8,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.21.0] - 2021-07-27
+
 ### Added
 
 - Add `VerticalPodAutoscaler` resource to adjust limits automatically.
@@ -177,7 +179,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.20.3...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.21.0...HEAD
+[1.21.0]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.20.3...v1.21.0
 [1.20.3]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.19.3...v1.20.3
 [1.19.3]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.20.2...v1.19.3
 [1.20.2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.20.1...v1.20.2
