@@ -27,7 +27,11 @@ spec:
         kubernetes.io/role: master
       priorityClassName: giantswarm-critical
       containers:
+        {{- if eq .Values.isManagementCluster true }}
+        - image: "{{ .Values.registry.domain }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+        {{- else }}
         - image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+        {{- end }}
           name: {{ .Values.name }}
           resources:
             {{- toYaml .Values.clusterAutoscalerResources | nindent 12 }}
@@ -38,12 +42,12 @@ spec:
             - --logtostderr=true
             # Don't use auto discovery in integration tests.
             {{- if eq .Values.e2e false }}
-            {{- if .Values.Installation }}
-            - --cloud-provider={{ .Values.Installation.V1.Provider.Kind }}
-            {{- if eq .Values.Installation.V1.Provider.Kind "aws" }}
-            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.Installation.V1.Name }}
-            {{- else if eq .Values.Installation.V1.Provider.Kind "azure" }}
-            - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.Installation.V1.Name }}
+            {{- if eq .Values.isManagementCluster true }}
+            - --cloud-provider={{ .Values.provider }}
+            {{- if eq .Values.provider "aws" }}
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.managementCluster.name }}
+            {{- else if eq .Values.provider "azure" }}
+            - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.managementCluster.name }}
             {{- end }}
             {{- else }}
             - --cloud-provider={{ .Values.provider }}
@@ -64,10 +68,10 @@ spec:
             - --scan-interval={{ .Values.configmap.scanInterval }}
             - --stderrthreshold=info
           env:
-          {{- if .Values.Installation }}
-          {{- if eq .Values.Installation.V1.Provider.Kind "azure" }}
+          {{- if eq .Values.isManagementCluster true }}
+          {{- if eq .Values.provider "azure" }}
             - name: ARM_RESOURCE_GROUP
-              value: {{ .Values.Installation.V1.Name }}
+              value: {{ .Values.managementCluster.name }}
             - name: ARM_USE_MANAGED_IDENTITY_EXTENSION
               value: {{ quote .Values.azure.managedIdentity }}
             - name: ARM_VM_TYPE
