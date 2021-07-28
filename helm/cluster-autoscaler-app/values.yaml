@@ -18,8 +18,12 @@ configmap:
 
 e2e: false
 
+isManagementCluster: false
+managementCluster:
+  name: ""
+
 image:
-  registry: docker.io
+  registry: docker.io # used in workload cluster
   name: giantswarm/cluster-autoscaler
   tag: v1.20.0
 
@@ -45,3 +49,6 @@ clusterAutoscalerResources:
   requests:
     cpu: 100m
     memory: 400Mi
+
+registry:
+  domain: docker.io # used in management cluster

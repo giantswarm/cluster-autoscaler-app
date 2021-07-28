@@ -5,6 +5,7 @@ home: https://github.com/giantswarm/cluster-autoscaler-app
 name: cluster-autoscaler-app
 version: [[ .Version ]]
 annotations:
+  config.giantswarm.io/version: 1.x.x
   application.giantswarm.io/owners: |
     - catalog: control-plane-catalog
       team: biscuit
