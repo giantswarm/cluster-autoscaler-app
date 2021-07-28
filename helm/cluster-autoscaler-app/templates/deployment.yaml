@@ -27,7 +27,7 @@ spec:
         kubernetes.io/role: master
       priorityClassName: giantswarm-critical
       containers:
-        {{- if isManagementCluster }}
+        {{- if eq .Values.isManagementCluster true }}
         - image: "{{ .Values.registry.domain }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
         {{- else }}
         - image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
@@ -42,7 +42,7 @@ spec:
             - --logtostderr=true
             # Don't use auto discovery in integration tests.
             {{- if eq .Values.e2e false }}
-            {{- if isManagementCluster }}
+            {{- if eq .Values.isManagementCluster true }}
             - --cloud-provider={{ .Values.provider }}
             {{- if eq .Values.provider "aws" }}
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.managementCluster.name }}
@@ -68,7 +68,7 @@ spec:
             - --scan-interval={{ .Values.configmap.scanInterval }}
             - --stderrthreshold=info
           env:
-          {{- if .Values.isManagementCluster }}
+          {{- if eq .Values.isManagementCluster true }}
           {{- if eq .Values.provider "azure" }}
             - name: ARM_RESOURCE_GROUP
               value: {{ .Values.managementCluster.name }}
