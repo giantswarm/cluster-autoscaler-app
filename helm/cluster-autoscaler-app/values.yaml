@@ -23,7 +23,7 @@ managementCluster:
   name: ""
 
 image:
-  registry: docker.io # used in workload cluster
+  registry: docker.io
   name: giantswarm/cluster-autoscaler
   tag: v1.20.0
 
@@ -51,4 +51,4 @@ clusterAutoscalerResources:
     memory: 400Mi
 
 registry:
-  domain: docker.io # used in management cluster
+  domain: docker.io
