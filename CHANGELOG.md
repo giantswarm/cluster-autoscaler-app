@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Use new node selector `node-role.kubernetes.io/master` in place of deprecated one `kubernetes.io/role`.
+
 ## [1.22.0] - 2021-07-28
 
 ### Changed
