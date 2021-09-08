@@ -8,6 +8,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.23.0] - 2021-09-08
+
 ### Changed
 
 - Use new node selector `node-role.kubernetes.io/master` in place of deprecated one `kubernetes.io/role`.
@@ -190,7 +192,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.22.0...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.23.0...HEAD
+[1.23.0]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.22.0...v1.23.0
 [1.22.0]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.21.0...v1.22.0
 [1.21.0]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.20.3...v1.21.0
 [1.20.3]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.19.3...v1.20.3
