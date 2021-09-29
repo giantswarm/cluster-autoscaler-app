@@ -8,6 +8,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+- Fix RBAC for cluster autoscaler 1.21.
+
 ## [1.21.0-gs1] - 2021-09-13
 
 ### Changed
