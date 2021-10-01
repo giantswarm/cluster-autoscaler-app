@@ -18,10 +18,14 @@ configmap:
 
 e2e: false
 
+isManagementCluster: false
+managementCluster:
+  name: ""
+
 image:
   registry: docker.io
   name: giantswarm/cluster-autoscaler
-  tag: v1.20.0
+  tag: v1.21.0
 
 # clusterID is dynamic environment value, calculated after cluster creation
 # applies only to Giant Swarm clusters
@@ -45,3 +49,6 @@ clusterAutoscalerResources:
   requests:
     cpu: 100m
     memory: 400Mi
+
+registry:
+  domain: docker.io

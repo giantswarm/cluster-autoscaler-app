@@ -81,6 +81,8 @@ rules:
   resources:
   - storageclasses
   - csinodes
+  - csidrivers
+  - csistoragecapacities
   verbs:
   - watch
   - list
@@ -132,10 +134,12 @@ rules:
   - configmaps
   resourceNames:
   - cluster-autoscaler-status
+  - cluster-autoscaler-priority-expander
   verbs:
   - delete
   - get
   - update
+  - watch
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
