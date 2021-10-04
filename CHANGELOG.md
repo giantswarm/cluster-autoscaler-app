@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Increase memory limit to avoid OOM's when starting.
+
 ## [1.21.0-gs2] - 2021-09-29
 
 - Fix RBAC for cluster autoscaler 1.21.
