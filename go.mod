@@ -9,7 +9,6 @@ require (
 	github.com/giantswarm/micrologger v0.5.0
 	github.com/imdario/mergo v0.3.11 // indirect
 	github.com/stretchr/testify v1.6.1 // indirect
-	golang.org/x/sys v0.0.0-20200814200057-3d37ad5750ed // indirect
 	gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776 // indirect
 	k8s.io/apimachinery v0.19.2
 )
