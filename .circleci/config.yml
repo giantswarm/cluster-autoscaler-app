@@ -69,3 +69,18 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
+              
+      # deploy to openstack installations (only tags)
+      - architect/push-to-app-collection:
+          name: push-cluster-autoscaler-app-to-openstack-app-collection
+          app_name: "cluster-autoscaler-app"
+          app_namespace: "kube-system"
+          app_collection_repo: "openstack-app-collection"
+          requires:
+            - push-to-control-plane-app-catalog
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
+
