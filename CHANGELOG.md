@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Updated cluster-autoscaler to version `1.21.2`.
+
 ## [1.21.0-gs2] - 2021-09-29
 
 - Fix RBAC for cluster autoscaler 1.21.
