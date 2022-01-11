@@ -41,11 +41,21 @@ rules:
   - update
 - apiGroups: [""]
   resources:
+  - namespaces
   - pods
   - services
   - replicationcontrollers
   - persistentvolumeclaims
   - persistentvolumes
+  verbs:
+  - watch
+  - list
+  - get
+- apiGroups:
+  - batch
+  resources:
+  - jobs
+  - cronjobs
   verbs:
   - watch
   - list
@@ -97,6 +107,13 @@ rules:
   - list
   - get
   - patch
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - list
+  - watch
 - apiGroups:
   - coordination.k8s.io
   resources:
