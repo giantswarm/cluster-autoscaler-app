@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix RBAC for version 1.22.
+
 ## [1.22.2-gs1] - 2022-01-11
 
 ### Changed
