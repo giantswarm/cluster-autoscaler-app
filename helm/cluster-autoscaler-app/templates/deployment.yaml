@@ -61,6 +61,7 @@ spec:
             {{- end }}
             {{- end }}
             {{- end }}
+            - --balance-similar-node-groups={{ .Values.configmap.balanceSimilarNodeGroups }}
             - --skip-nodes-with-local-storage={{ .Values.configmap.skipNodesWithLocalStorage }}
             - --skip-nodes-with-system-pods={{ .Values.configmap.skipNodesWithSystemPods }}
             - --scale-down-unneeded-time={{ .Values.configmap.scaleDownUnneededTime }}
