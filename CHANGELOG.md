@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Added support for specifying `balance-similar-node-groups` flag
+
 ## [1.22.2-gs2] - 2022-01-14
 
 ### Fixed
