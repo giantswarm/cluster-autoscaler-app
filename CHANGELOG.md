@@ -11,6 +11,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 ### Fixed
 
 - Updated to correct cluster-autoscaler version
+- Use GS-built 1.22 image to deliver upstream unreleased fix https://github.com/kubernetes/autoscaler/pull/4600
 
 ## [1.22.2-gs3] - 2022-02-07
 
