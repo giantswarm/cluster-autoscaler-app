@@ -43,11 +43,8 @@ workflows:
             - push-to-default-app-catalog
 
       # deploy to aws installations (only tags)
-      - architect/push-to-app-collection:
-          name: push-cluster-autoscaler-app-to-aws-app-collection
-          app_name: "cluster-autoscaler-app"
-          app_namespace: "kube-system"
-          app_collection_repo: "aws-app-collection"
+      - hold-push-to-aws-app-collection:
+          type: approval
           requires:
             - push-to-control-plane-app-catalog
           filters:
@@ -55,15 +52,36 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
+      - architect/push-to-app-collection:
+          name: push-cluster-autoscaler-app-to-aws-app-collection
+          app_name: "cluster-autoscaler-app"
+          app_namespace: "kube-system"
+          app_collection_repo: "aws-app-collection"
+          requires:
+            - hold-push-to-aws-app-collection
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
 
       # deploy to azure installations (only tags)
+      - hold-push-to-azure-app-collection:
+          type: approval
+          requires:
+            - push-to-control-plane-app-catalog
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
       - architect/push-to-app-collection:
           name: push-cluster-autoscaler-app-to-azure-app-collection
           app_name: "cluster-autoscaler-app"
           app_namespace: "kube-system"
           app_collection_repo: "azure-app-collection"
           requires:
-            - push-to-control-plane-app-catalog
+            - hold-push-to-azure-app-collection
           filters:
             branches:
               ignore: /.*/
