@@ -33,3 +33,14 @@ Selector labels
 {{- define "labels.selector" -}}
 app: {{ include "name" . | quote }}
 {{- end -}}
+
+{{/*
+Support cloud provider aliases
+*/}}
+{{- define "cloud-provider" -}}
+{{- if eq .Values.provider "gcp" -}}
+gce
+{{- else -}}
+{{ .Values.provider }}
+{{- end -}}
+{{- end -}}

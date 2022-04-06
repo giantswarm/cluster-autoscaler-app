@@ -43,14 +43,14 @@ spec:
             # Don't use auto discovery in integration tests.
             {{- if eq .Values.e2e false }}
             {{- if eq .Values.isManagementCluster true }}
-            - --cloud-provider={{ .Values.provider }}
+            - --cloud-provider={{ include "cloud-provider" . }}
             {{- if eq .Values.provider "aws" }}
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.managementCluster.name }}
             {{- else if eq .Values.provider "azure" }}
             - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.managementCluster.name }}
             {{- end }}
             {{- else }}
-            - --cloud-provider={{ .Values.provider }}
+            - --cloud-provider={{ include "cloud-provider" . }}
             {{- if eq .Values.provider "aws" }}
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.clusterID }}
             # Turning runtime instance info acquisition off because of
