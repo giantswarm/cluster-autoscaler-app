@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Support cloud provider alias names (GCP -> GCE)
+
 ## [1.22.2-gs3] - 2022-02-07
 
 ### Added
