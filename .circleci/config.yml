@@ -87,3 +87,49 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v.*/
+
+      # deploy to gcp installations (only tags)
+      - hold-push-to-gcp-app-collection:
+          type: approval
+          requires:
+            - push-to-control-plane-app-catalog
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
+      - architect/push-to-app-collection:
+          name: push-cluster-autoscaler-app-to-gcp-app-collection
+          app_name: "cluster-autoscaler-app"
+          app_namespace: "kube-system"
+          app_collection_repo: "gcp-app-collection"
+          requires:
+            - hold-push-to-gcp-app-collection
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
+
+      # deploy to shared installations (only tags)
+      - hold-push-to-shared-app-collection:
+          type: approval
+          requires:
+            - push-to-control-plane-app-catalog
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
+      - architect/push-to-app-collection:
+          name: push-cluster-autoscaler-app-to-shared-app-collection
+          app_name: "cluster-autoscaler-app"
+          app_namespace: "kube-system"
+          app_collection_repo: "shared-app-collection"
+          requires:
+            - hold-push-to-shared-app-collection
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
