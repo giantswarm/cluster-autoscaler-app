@@ -17,8 +17,6 @@ configmap:
   skipNodesWithSystemPods: "true"
   balanceSimilarNodeGroups: "false"
 
-e2e: false
-
 isManagementCluster: false
 managementCluster:
   name: ""
