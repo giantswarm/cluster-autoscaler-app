@@ -41,7 +41,6 @@ spec:
             - --expander={{ .Values.configmap.expander }}
             - --logtostderr=true
             # Don't use auto discovery in integration tests.
-            {{- if eq .Values.e2e false }}
             {{- if eq .Values.isManagementCluster true }}
             - --cloud-provider={{ include "cloud-provider" . }}
             {{- if eq .Values.provider "aws" }}
@@ -58,7 +57,6 @@ spec:
             - --aws-use-static-instance-list=true
             {{- else if eq .Values.provider "azure" }}
             - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.clusterID }}
-            {{- end }}
             {{- end }}
             {{- end }}
             - --balance-similar-node-groups={{ .Values.configmap.balanceSimilarNodeGroups }}
