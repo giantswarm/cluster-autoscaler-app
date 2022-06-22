@@ -3,7 +3,7 @@ appVersion: v1.22.2
 description: A Helm chart for the cluster autoscaler.
 home: https://github.com/giantswarm/cluster-autoscaler-app
 name: cluster-autoscaler-app
-version: [[ .Version ]]
+version: 1.1.1
 annotations:
   application.giantswarm.io/team: "phoenix"
   config.giantswarm.io/version: 1.x.x

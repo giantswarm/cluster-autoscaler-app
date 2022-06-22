@@ -66,8 +66,7 @@ spec:
             - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
             - --scan-interval={{ .Values.configmap.scanInterval }}
             - --stderrthreshold=info
-            {{- range $key, $value := .Values.extraArgs }}
-            - --{{ $key }}={{ $value }}
+            {{- range $key, $value := .Values.balancingIgnoreLabels }}
             - --{{ $key | mustRegexFind "^[^_]+" }}={{ $value }}
             {{- end }}
           env:
