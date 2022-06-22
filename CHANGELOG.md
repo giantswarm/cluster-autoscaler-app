@@ -8,6 +8,14 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Fixed
+
+- Ignore labels to consider nodepools similar groups
+
+### Added
+
+- Support to add extra arguments
+
 ## [1.22.2-gs6] - 2022-04-07
 
 ## [1.22.2-gs5] - 2022-04-06

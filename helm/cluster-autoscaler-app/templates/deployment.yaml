@@ -66,6 +66,10 @@ spec:
             - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
             - --scan-interval={{ .Values.configmap.scanInterval }}
             - --stderrthreshold=info
+            {{- range $key, $value := .Values.extraArgs }}
+            - --{{ $key }}={{ $value }}
+            - --{{ $key | mustRegexFind "^[^_]+" }}={{ $value }}
+            {{- end }}
           env:
           {{- if eq .Values.isManagementCluster true }}
           {{- if eq .Values.provider "azure" }}
