@@ -15,7 +15,7 @@ configmap:
   scaleDownUtilizationThreshold: 0.5
   skipNodesWithLocalStorage: "false"
   skipNodesWithSystemPods: "true"
-  balanceSimilarNodeGroups: "false"
+  balanceSimilarNodeGroups: "true"
 
 isManagementCluster: false
 managementCluster:
