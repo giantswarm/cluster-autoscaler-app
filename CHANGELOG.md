@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Enable balance similar nodepools by default
+
 ### Fixed
 
 - Ignore labels to consider nodepools similar groups
