@@ -15,7 +15,7 @@ configmap:
   scaleDownUtilizationThreshold: 0.5
   skipNodesWithLocalStorage: "false"
   skipNodesWithSystemPods: "true"
-  balanceSimilarNodeGroups: "false"
+  balanceSimilarNodeGroups: "true"
 
 isManagementCluster: false
 managementCluster:
@@ -51,3 +51,9 @@ clusterAutoscalerResources:
 
 registry:
   domain: docker.io
+
+
+balancingIgnoreLabels:
+  balancing-ignore-label_1: ip
+  balancing-ignore-label_2: vpc.amazonaws.com/eniConfig
+  balancing-ignore-label_3: giantswarm.io/machine-deployment
