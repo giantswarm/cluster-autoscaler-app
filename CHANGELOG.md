@@ -8,6 +8,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.22.2-gs7] - 2022-06-27
+
 ### Changed
 
 - Enable balance similar nodepools by default
