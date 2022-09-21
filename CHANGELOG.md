@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Update cluster-autoscaler to version `1.24.0`.
+
 ## [1.23.1] - 2022-07-12
 
 ### Changed

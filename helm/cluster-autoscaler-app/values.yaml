@@ -24,7 +24,7 @@ managementCluster:
 image:
   registry: docker.io
   name: giantswarm/cluster-autoscaler
-  tag: v1.23.1
+  tag: v1.24.0
 
 # clusterID is dynamic environment value, calculated after cluster creation
 # applies only to Giant Swarm clusters
