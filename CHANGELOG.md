@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Add 'projected' volumes to the PSP.
+
 ## [1.24.0-gs1] - 2022-09-21
 
 ### Changed
