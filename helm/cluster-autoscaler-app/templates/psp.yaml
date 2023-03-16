@@ -23,6 +23,7 @@ spec:
   volumes:
   - 'secret'
   - 'hostPath'
+  - 'projected'
   hostPID: false
   hostIPC: false
   hostNetwork: false
