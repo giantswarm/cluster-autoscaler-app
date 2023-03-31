@@ -16,6 +16,7 @@ configmap:
   skipNodesWithLocalStorage: "false"
   skipNodesWithSystemPods: "true"
   balanceSimilarNodeGroups: "true"
+  new-pod-scale-up-delay: 0
 
 isManagementCluster: false
 managementCluster:

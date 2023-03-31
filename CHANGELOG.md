@@ -11,6 +11,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 ### Changed
 
 - Add 'projected' volumes to the PSP.
+- Add new-pod-scale-up-delay variable.
 
 ## [1.24.0-gs1] - 2022-09-21
 

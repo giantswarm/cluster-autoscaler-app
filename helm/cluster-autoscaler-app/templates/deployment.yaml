@@ -66,6 +66,7 @@ spec:
             - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
             - --scan-interval={{ .Values.configmap.scanInterval }}
             - --stderrthreshold=info
+            - --new-pod-scale-up-delay={{ .Values.configmap.new-pod-scale-up-delay }}
             {{- range $key, $value := .Values.balancingIgnoreLabels }}
             - --{{ $key | mustRegexFind "^[^_]+" }}={{ $value }}
             {{- end }}
