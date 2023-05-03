@@ -12,6 +12,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Add 'projected' volumes to the PSP.
 - Add new-pod-scale-up-delay variable.
+- Disable PSPs for k8s 1.25 and newer.
 
 ## [1.24.0-gs1] - 2022-09-21
 
