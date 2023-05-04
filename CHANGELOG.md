@@ -8,6 +8,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.24.0-gs2] - 2023-05-04
+
 ### Changed
 
 - Add 'projected' volumes to the PSP.
@@ -273,7 +275,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.24.0-gs1...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.24.0-gs2...HEAD
+[1.24.0-gs2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.24.0-gs1...v1.24.0-gs2
 [1.24.0-gs1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.23.1...v1.24.0-gs1
 [1.23.1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.22.2-gs7...v1.23.1
 [1.22.2-gs7]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.22.2-gs6...v1.22.2-gs7
