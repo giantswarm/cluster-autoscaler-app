@@ -13,8 +13,8 @@ spec:
       controlledValues: RequestsAndLimits
       mode: Auto
       minAllowed:
-        cpu: {{ .Values.vpa.minAllowed.cpu }}
-        memory: {{ .Values.vpa.minAllowed.memory }}
+        cpu: {{ .Values.verticalPodAutoscaler.minAllowed.cpu }}
+        memory: {{ .Values.verticalPodAutoscaler.minAllowed.memory }}
   targetRef:
     apiVersion: apps/v1
     kind: Deployment
