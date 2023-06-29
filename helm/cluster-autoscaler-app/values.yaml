@@ -47,17 +47,16 @@ clusterAutoscalerResources:
   limits:
     memory: 400Mi
   requests:
-    cpu: 100m
+    cpu: 200m
     memory: 400Mi
 
 verticalPodAutoscaler:
   minAllowed:
     cpu: 200m
-    memory: 300Mi
+    memory: 400Mi
 
 registry:
   domain: docker.io
-
 
 balancingIgnoreLabels:
   balancing-ignore-label_1: ip
