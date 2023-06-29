@@ -11,7 +11,7 @@ spec:
     containerPolicies:
     - containerName: {{ .Values.name }}
       controlledValues: RequestsAndLimits
-      mode: "Auto"
+      mode: Auto
       minAllowed:
         cpu: "200m"
         memory: "300Mi"
