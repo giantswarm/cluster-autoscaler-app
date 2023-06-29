@@ -13,8 +13,8 @@ spec:
       controlledValues: RequestsAndLimits
       mode: Auto
       minAllowed:
-        cpu: "200m"
-        memory: "300Mi"
+        cpu: {{ .Values.vpa.minAllowed.cpu }}
+        memory: {{ .Values.vpa.minAllowed.memory }}
   targetRef:
     apiVersion: apps/v1
     kind: Deployment

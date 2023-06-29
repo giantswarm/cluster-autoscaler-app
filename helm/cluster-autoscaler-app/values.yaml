@@ -50,6 +50,11 @@ clusterAutoscalerResources:
     cpu: 100m
     memory: 400Mi
 
+vpa:
+  minAllowed:
+    cpu: "200m"
+    memory: "300Mi"
+
 registry:
   domain: docker.io
 
