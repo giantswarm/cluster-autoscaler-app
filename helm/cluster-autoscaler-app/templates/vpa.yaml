@@ -11,7 +11,10 @@ spec:
     containerPolicies:
     - containerName: {{ .Values.name }}
       controlledValues: RequestsAndLimits
-      mode: Auto
+      mode: "Auto"
+      minAllowed:
+        cpu: "200m"
+        memory: "300Mi"
   targetRef:
     apiVersion: apps/v1
     kind: Deployment
