@@ -12,7 +12,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ### Changed
 
-- Update cluster-autoscaler to version `1.25.1`.
+- Adjusted minimum allowed CPU and memory
 
 ## [1.24.0-gs2] - 2023-05-04
 
