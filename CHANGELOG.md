@@ -8,8 +8,6 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
-## [1.25.2] - 2023-06-30
-
 ### Fixed
 
 - Adjusted minimum allowed CPU and memory
