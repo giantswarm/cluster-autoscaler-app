@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/giantswarm/cluster-autoscaler-app.svg?style=shield)](https://circleci.com/gh/giantswarm/cluster-autoscaler-app)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/giantswarm/cluster-autoscaler-app/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giantswarm/cluster-autoscaler-app/tree/master)
 
 # cluster-autoscaler-app
 
