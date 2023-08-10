@@ -10,7 +10,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ### Changed
 
--  Update cluster-autoscaler to version `1.24.3`.
+- Change ScaleDownUtilizationThreshold default from 0.5 to 0.7
+- Update cluster-autoscaler to version `1.24.3`.
 
 ## [1.24.0-gs3] - 2023-06-30
 

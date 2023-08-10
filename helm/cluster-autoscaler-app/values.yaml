@@ -12,7 +12,7 @@ configmap:
   expander: least-waste
   scanInterval: 30s
   scaleDownUnneededTime: 5m0s
-  scaleDownUtilizationThreshold: 0.5
+  scaleDownUtilizationThreshold: 0.7
   skipNodesWithLocalStorage: "false"
   skipNodesWithSystemPods: "true"
   balanceSimilarNodeGroups: "true"
