@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Kyverno policy exceptions for cluster-autoscaler.
+
 ## [1.24.3-gs2] - 2023-10-18
 
 ### Changed
