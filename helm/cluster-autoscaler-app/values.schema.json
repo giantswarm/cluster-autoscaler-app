@@ -1,0 +1,173 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "azure": {
+      "type": "object",
+      "properties": {
+        "managedIdentity": {
+          "type": "boolean"
+        },
+        "subscriptionID": {
+          "type": "string"
+        },
+        "vmType": {
+          "type": "string"
+        }
+      }
+    },
+    "balancingIgnoreLabels": {
+      "type": "object",
+      "properties": {
+        "balancing-ignore-label_1": {
+          "type": "string"
+        },
+        "balancing-ignore-label_2": {
+          "type": "string"
+        },
+        "balancing-ignore-label_3": {
+          "type": "string"
+        }
+      }
+    },
+    "clusterAutoscalerResources": {
+      "type": "object",
+      "properties": {
+        "limits": {
+          "type": "object",
+          "properties": {
+            "memory": {
+              "type": "string"
+            }
+          }
+        },
+        "requests": {
+          "type": "object",
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "clusterID": {
+      "type": "string"
+    },
+    "configmap": {
+      "type": "object",
+      "properties": {
+        "balanceSimilarNodeGroups": {
+          "type": "string"
+        },
+        "expander": {
+          "type": "string"
+        },
+        "newPodScaleUpDelay": {
+          "type": "string"
+        },
+        "scaleDownUnneededTime": {
+          "type": "string"
+        },
+        "scaleDownUtilizationThreshold": {
+          "type": "number"
+        },
+        "scanInterval": {
+          "type": "string"
+        },
+        "skipNodesWithLocalStorage": {
+          "type": "string"
+        },
+        "skipNodesWithSystemPods": {
+          "type": "string"
+        }
+      }
+    },
+    "global": {
+      "type": "object",
+      "properties": {
+        "podSecurityStandards": {
+          "type": "object",
+          "properties": {
+            "enforced": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "groupID": {
+      "type": "integer"
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "registry": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        }
+      }
+    },
+    "isManagementCluster": {
+      "type": "boolean"
+    },
+    "managementCluster": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    },
+    "port": {
+      "type": "integer"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "registry": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceType": {
+      "type": "string"
+    },
+    "userID": {
+      "type": "integer"
+    },
+    "verticalPodAutoscaler": {
+      "type": "object",
+      "properties": {
+        "minAllowed": {
+          "type": "object",
+          "properties": {
+            "cpu": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

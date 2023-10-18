@@ -62,3 +62,7 @@ balancingIgnoreLabels:
   balancing-ignore-label_1: ip
   balancing-ignore-label_2: vpc.amazonaws.com/eniConfig
   balancing-ignore-label_3: giantswarm.io/machine-deployment
+
+global:
+  podSecurityStandards:
+    enforced: false
