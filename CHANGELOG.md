@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Replace condition for PSP CR installation.
+
 ## [1.24.3] - 2023-08-15
 
 ### Changed
