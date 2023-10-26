@@ -8,6 +8,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.24.3-gs3] - 2023-10-26
+
 ### Added
 
 - Kyverno policy exceptions for cluster-autoscaler.
@@ -298,7 +300,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.24.3-gs2...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.24.3-gs3...HEAD
+[1.24.3-gs3]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.24.3-gs2...v1.24.3-gs3
 [1.24.3-gs2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.24.3...v1.24.3-gs2
 [1.24.3]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.24.0-gs3...v1.24.3
 [1.24.0-gs3]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.24.0-gs2...v1.24.0-gs3
