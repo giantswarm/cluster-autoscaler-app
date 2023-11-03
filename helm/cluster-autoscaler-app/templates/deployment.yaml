@@ -23,6 +23,9 @@ spec:
       - effect: NoSchedule
         operator: "Exists"
         key: node-role.kubernetes.io/master
+      - effect: NoSchedule
+        operator: "Exists"
+        key: node-role.kubernetes.io/control-plane
       nodeSelector:
 {{- if semverCompare ">=1.24.0" .Capabilities.KubeVersion.Version }}
         node-role.kubernetes.io/control-plane: ""
@@ -49,6 +52,8 @@ spec:
             - --cloud-provider={{ include "cloud-provider" . }}
             {{- if eq .Values.provider "aws" }}
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.managementCluster.name }}
+            {{- else if eq .Values.provider "capa" }}
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,sigs.k8s.io/cluster-api-provider-aws/cluster/{{ .Values.clusterID }}
             {{- else if eq .Values.provider "azure" }}
             - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.managementCluster.name }}
             {{- end }}
@@ -58,6 +63,9 @@ spec:
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.clusterID }}
             # Turning runtime instance info acquisition off because of
             # https://github.com/kubernetes/autoscaler/issues/3076
+            - --aws-use-static-instance-list=true
+            {{- else if eq .Values.provider "capa" }}
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,sigs.k8s.io/cluster-api-provider-aws/cluster/{{ .Values.clusterID }}
             - --aws-use-static-instance-list=true
             {{- else if eq .Values.provider "azure" }}
             - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.clusterID }}

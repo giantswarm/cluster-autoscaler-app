@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Node Group Auto Discovery for CAPA MachinePools.
+
 ### Changed
 
 - Update cluster-autoscaler to version `1.27.3`.
