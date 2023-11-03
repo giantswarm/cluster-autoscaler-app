@@ -51,11 +51,11 @@ spec:
             {{- if eq .Values.isManagementCluster true }}
             - --cloud-provider={{ include "cloud-provider" . }}
             {{- if eq .Values.provider "aws" }}
-            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.managementCluster.name }}
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.managementCluster }}
             {{- else if eq .Values.provider "capa" }}
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,sigs.k8s.io/cluster-api-provider-aws/cluster/{{ .Values.clusterID }}
             {{- else if eq .Values.provider "azure" }}
-            - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.managementCluster.name }}
+            - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.managementCluster }}
             {{- end }}
             {{- else }}
             - --cloud-provider={{ include "cloud-provider" . }}
@@ -86,7 +86,7 @@ spec:
           {{- if eq .Values.isManagementCluster true }}
           {{- if eq .Values.provider "azure" }}
             - name: ARM_RESOURCE_GROUP
-              value: {{ .Values.managementCluster.name }}
+              value: {{ .Values.managementCluster }}
             - name: ARM_USE_MANAGED_IDENTITY_EXTENSION
               value: {{ quote .Values.azure.managedIdentity }}
             - name: ARM_VM_TYPE

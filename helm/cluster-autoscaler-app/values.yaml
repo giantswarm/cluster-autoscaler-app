@@ -19,8 +19,7 @@ configmap:
   newPodScaleUpDelay: 0s
 
 isManagementCluster: false
-managementCluster:
-  name: ""
+managementCluster: ""
 
 image:
   registry: docker.io

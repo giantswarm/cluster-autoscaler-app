@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Change helm value `managementCluster` from object to string.
+
 ## [1.27.3-gs1] - 2023-11-03
 
 ### Added
