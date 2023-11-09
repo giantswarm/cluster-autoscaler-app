@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Add service account annotations as value.
+
 ## [1.27.3-gs2] - 2023-11-03
 
 ### Changed
