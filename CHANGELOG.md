@@ -8,6 +8,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Service monitor.
+
 ## [1.27.3-gs3] - 2023-11-10
 
 ### Added
