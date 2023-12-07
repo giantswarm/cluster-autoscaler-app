@@ -13,6 +13,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 - Change ScaleDownUtilizationThreshold default from 0.5 to 0.7
 - Update cluster-autoscaler to version `1.25.3`.
 - Replace condition for PSP CR installation.
+- Configure `gsoci.azurecr.io` as the default container image registry.
 
 ## [1.25.1-gs2] - 2023-06-30
 

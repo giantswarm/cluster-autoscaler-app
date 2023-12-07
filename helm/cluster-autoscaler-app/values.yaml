@@ -23,7 +23,7 @@ managementCluster:
   name: ""
 
 image:
-  registry: docker.io
+  registry: gsoci.azurecr.io
   name: giantswarm/cluster-autoscaler
   tag: v1.25.3
 
@@ -56,7 +56,7 @@ verticalPodAutoscaler:
     memory: 400Mi
 
 registry:
-  domain: docker.io
+  domain: gsoci.azurecr.io
 
 balancingIgnoreLabels:
   balancing-ignore-label_1: ip
