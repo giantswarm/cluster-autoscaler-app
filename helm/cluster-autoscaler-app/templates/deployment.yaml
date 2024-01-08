@@ -110,4 +110,8 @@ spec:
       volumes:
         - name: ssl-certs
           hostPath:
+            {{- if and .Values.node .Values.node.caBundlePath }}
+            path: "{{ .Values.node.caBundlePath }}"
+            {{- else }}
             path: "/etc/ssl/certs/ca-certificates.crt"
+            {{- end }}

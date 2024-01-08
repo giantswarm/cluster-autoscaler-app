@@ -11,6 +11,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 ### Added
 
 - Add configurable `node.nodeSelector` in values
+- Add configurable `node.caBundlePath` in values
 
 ### Changed
 

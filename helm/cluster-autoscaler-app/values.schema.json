@@ -138,6 +138,9 @@
             "properties": {
                 "nodeSelector": {
                     "type": "object"
+                },
+                "caBundlePath": {
+                    "type": "string"
                 }
             }
         },
