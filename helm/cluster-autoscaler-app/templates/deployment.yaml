@@ -24,7 +24,7 @@ spec:
         operator: "Exists"
         key: node-role.kubernetes.io/master
       nodeSelector:
-{{- if and .Values.node .Values.node.nodeSelector }}
+{{- if ((.Values.node).nodeSelector) }}
         {{- with .Values.node.nodeSelector }}
 {{ toYaml . | indent 8 }}
         {{- end }}
@@ -110,7 +110,7 @@ spec:
       volumes:
         - name: ssl-certs
           hostPath:
-            {{- if and .Values.node .Values.node.caBundlePath }}
+            {{- if ((.Values.node).caBundlePath) }}
             path: "{{ .Values.node.caBundlePath }}"
             {{- else }}
             path: "/etc/ssl/certs/ca-certificates.crt"
