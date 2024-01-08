@@ -24,13 +24,11 @@ spec:
         operator: "Exists"
         key: node-role.kubernetes.io/master
       nodeSelector:
-{{- if ((.Values.node).nodeSelector) }}
-        {{- with .Values.node.nodeSelector }}
-{{ toYaml . | indent 8 }}
-        {{- end }}
-{{- else if semverCompare ">=1.24.0" .Capabilities.KubeVersion.Version }}
+        {{- if ((.Values.node).nodeSelector) }}
+        {{- toYaml .Values.node.nodeSelector | nindent 8 }}
+        {{- else if semverCompare ">=1.24.0" .Capabilities.KubeVersion.Version }}
         node-role.kubernetes.io/control-plane: ""
-{{- else }}
+        {{- else }}
         node-role.kubernetes.io/master: ""
 {{- end }}
       priorityClassName: giantswarm-critical
