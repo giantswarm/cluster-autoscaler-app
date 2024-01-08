@@ -133,6 +133,14 @@
         "namespace": {
             "type": "string"
         },
+        "node": {
+            "type": "object",
+            "properties": {
+                "nodeSelector": {
+                    "type": "object"
+                }
+            }
+        },
         "port": {
             "type": "integer"
         },
