@@ -64,7 +64,7 @@ balancingIgnoreLabels:
   balancing-ignore-label_3: giantswarm.io/machine-deployment
 
 # Node-level settings for the deployment
-node: 
+node:
   # sets spec.template.spec.nodeSelector for the deployment
   # Defaults (computed on k8s version in the template) should be ok for most cases running on control plane nodes, managed k8s services (e.g. EKS) need customization.
   nodeSelector: {}
