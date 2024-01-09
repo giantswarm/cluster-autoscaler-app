@@ -30,7 +30,7 @@ spec:
         node-role.kubernetes.io/control-plane: ""
         {{- else }}
         node-role.kubernetes.io/master: ""
-{{- end }}
+        {{- end }}
       priorityClassName: giantswarm-critical
       containers:
         {{- if eq .Values.isManagementCluster true }}
