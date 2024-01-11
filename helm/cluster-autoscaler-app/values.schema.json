@@ -133,6 +133,17 @@
         "namespace": {
             "type": "string"
         },
+        "node": {
+            "type": "object",
+            "properties": {
+                "nodeSelector": {
+                    "type": "object"
+                },
+                "caBundlePath": {
+                    "type": "string"
+                }
+            }
+        },
         "port": {
             "type": "integer"
         },

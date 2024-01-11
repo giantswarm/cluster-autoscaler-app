@@ -8,6 +8,11 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Add configurable `node.nodeSelector` in values
+- Add configurable `node.caBundlePath` in values
+
 ### Changed
 
 - Change ScaleDownUtilizationThreshold default from 0.5 to 0.7
