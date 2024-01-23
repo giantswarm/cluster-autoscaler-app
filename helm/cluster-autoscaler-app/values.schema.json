@@ -149,9 +149,6 @@
                 }
             }
         },
-        "port": {
-            "type": "integer"
-        },
         "provider": {
             "type": "string"
         },
