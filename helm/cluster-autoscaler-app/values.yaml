@@ -1,6 +1,5 @@
 name: cluster-autoscaler
 namespace: kube-system
-serviceType: managed
 
 userID: 65534
 groupID: 65534

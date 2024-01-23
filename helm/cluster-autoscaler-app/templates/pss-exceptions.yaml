@@ -4,6 +4,8 @@ kind: PolicyException
 metadata:
   name: {{ .Values.name }}-exceptions
   namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "cluster-autoscaler.labels" . | nindent 4 }}
 spec:
   exceptions:
   - policyName: disallow-capabilities-strict 

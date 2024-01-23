@@ -4,7 +4,7 @@ kind: PodSecurityPolicy
 metadata:
   name: {{ .Values.name }}-psp
   labels:
-    {{- include "labels.common" . | nindent 4 }}
+    {{- include "cluster-autoscaler.labels" . | nindent 4 }}
 spec:
   privileged: false
   runAsUser:

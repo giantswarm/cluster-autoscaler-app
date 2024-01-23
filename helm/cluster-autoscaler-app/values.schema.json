@@ -163,9 +163,6 @@
                 }
             }
         },
-        "serviceType": {
-            "type": "string"
-        },
         "userID": {
             "type": "integer"
         },

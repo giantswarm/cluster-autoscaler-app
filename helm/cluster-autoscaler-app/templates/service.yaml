@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.name }}
   namespace: {{ .Values.namespace }}
   labels:
-    {{- include "labels.common" . | nindent 4 }}
+    {{- include "cluster-autoscaler.labels" . | nindent 4 }}
     # kubernetes.io/cluster-service are kept to be displayed in kubectl cluster-info
     kubernetes.io/cluster-service: "true"
     kubernetes.io/name: {{ .Values.name }}
@@ -17,7 +17,7 @@ metadata:
     prometheus.io/path: "/metrics"
 spec:
   selector:
-    {{- include "labels.selector" . | nindent 4 }}
+    {{- include "cluster-autoscaler.selectorLabels" . | nindent 4 }}
   ports:
   - name: "metrics"
     port: 8085
