@@ -136,11 +136,16 @@
         "node": {
             "type": "object",
             "properties": {
-                "nodeSelector": {
-                    "type": "object"
-                },
                 "caBundlePath": {
                     "type": "string"
+                },
+                "nodeSelector": {
+                    "type": "object",
+                    "properties": {
+                        "node-role.kubernetes.io/control-plane": {
+                            "type": "string"
+                        }
+                    }
                 }
             }
         },
