@@ -7,7 +7,7 @@ groupID: 65534
 
 port: 8085
 
-# Make sure to update the docs at https://github.com/giantswarm/docs/blob/master/src/layouts/shortcodes/autoscaler_utilization_threshold.html if you change the defaults below
+# Make sure to update the docs at https://github.com/giantswarm/docs/blob/main/src/layouts/shortcodes/autoscaler_utilization_threshold.html if you change the defaults below
 configmap:
   expander: least-waste
   scanInterval: 30s
