@@ -1,6 +1,6 @@
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/giantswarm/cluster-autoscaler-app/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giantswarm/cluster-autoscaler-app/tree/master)
 
-# cluster-autoscaler-app
+# Cluster Autoscaler
 
 Helm chart for the Kubernetes [Cluster Autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler) running in Giant Swarm tenant clusters.
 
@@ -10,30 +10,28 @@ Helm chart for the Kubernetes [Cluster Autoscaler](https://github.com/kubernetes
 * Production releases are stored in the [default-catalog].
 * WIP releases are stored in the [default-test-catalog].
 
-## Installing the Chart
+## Installation
 
 To install the chart locally:
 
-```nohighlight
-git clone https://github.com/giantswarm/cluster-autoscaler-app.git
-cd cluster-autoscaler-app
-helm install helm/cluster-autoscaler-app
+```bash
+$ git clone https://github.com/giantswarm/cluster-autoscaler-app.git
+$ cd cluster-autoscaler-app
+$ helm install helm/cluster-autoscaler-app
 ```
 
 Provide a custom `values.yaml`:
 
-```nohighlight
-helm install cluster-autoscaler-app -f values.yaml
+```bash
+$ helm install helm/cluster-autoscaler-app --values values.yaml
 ```
 
 ## Release Process
 
 * Ensure CHANGELOG.md is up to date.
-* Create a new GitHub release with the version e.g. `v1.16.1` and link the
-changelog entry.
-  * Make sure the Major and Minor versions match with the upstream version.
-* This will push a new git tag and trigger a new tarball to be pushed to the
-[default-catalog].
+* Create a new branch with name `release#vx.x.x-gsx`. Automation will create a release PR.
+  * Make sure the major, minor and patch version matches with upstream.
+* Merging the release PR will push a new Git tag and trigger a new tarball to be pushed to the [default-catalog].
 * Update [cluster-operator] with the new version.
 
 [app-operator]: https://github.com/giantswarm/app-operator
