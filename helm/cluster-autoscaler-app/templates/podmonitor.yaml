@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "cluster-autoscaler.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "cluster-autoscaler.selectorLabels" . | nindent 6 }}
+  podMetricsEndpoints:
+  - port: metrics

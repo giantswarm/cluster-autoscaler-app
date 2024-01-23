@@ -100,6 +100,10 @@ spec:
               value: {{ .Values.azure.vmType }}
           {{- end }}
           {{- end }}
+          ports:
+          - name: metrics
+            protocol: TCP
+            containerPort: 8085
           volumeMounts:
             - name: ssl-certs
               mountPath: /etc/ssl/certs/ca-certificates.crt
