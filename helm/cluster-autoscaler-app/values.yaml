@@ -65,7 +65,8 @@ resources:
   limits:
     memory: 400Mi
 
-verticalPodAutoscaler:
+autoscaling:
+  # -- Lower bounds for vertical autoscaling.
   minAllowed:
     cpu: 200m
     memory: 400Mi
