@@ -4,6 +4,15 @@ namespace: kube-system
 userID: 65534
 groupID: 65534
 
+image:
+  # -- Registry host to pull images from.
+  # This value is set automatically. Do not overwrite it.
+  registry: gsoci.azurecr.io
+  # -- Image name.
+  name: giantswarm/cluster-autoscaler
+  # -- Image tag.
+  tag: v1.25.3
+
 configmap:
   # -- Type of node group expander to be used in scale up. Available values:
   #
@@ -39,13 +48,6 @@ configmap:
   - ip
   - vpc.amazonaws.com/eniConfig
   - giantswarm.io/machine-deployment
-
-image:
-  # -- Registry host to pull images from.
-  # This value is set automatically. Do not overwrite it.
-  registry: gsoci.azurecr.io
-  name: giantswarm/cluster-autoscaler
-  tag: v1.25.3
 
 azure:
   # -- ID of the subscription the VMSSs are contained in.
