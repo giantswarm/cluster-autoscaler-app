@@ -47,14 +47,12 @@ image:
   name: giantswarm/cluster-autoscaler
   tag: v1.25.3
 
-# azure contains the configuration values required by the azure provider and can be overridden
-# with custom values
 azure:
-  # Azure subscription where the VMSS are created
+  # -- ID of the subscription the VMSSs are contained in.
   subscriptionID: ""
-  # Whether or not to use the credentials automatically provisioned on the VMSS instances
+  # -- If the VMSS instances' managed identity should be used or not.
   managedIdentity: true
-  # Type of deployment used on Azure
+  # -- Azure VM type.
   vmType: VMSS
 
 clusterAutoscalerResources:
