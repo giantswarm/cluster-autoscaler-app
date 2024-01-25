@@ -85,7 +85,7 @@ spec:
           protocol: TCP
           containerPort: 8085
         resources:
-          {{- toYaml .Values.clusterAutoscalerResources | nindent 10 }}
+          {{- toYaml .Values.resources | nindent 10 }}
         volumeMounts:
         - name: ssl-certs
           mountPath: /etc/ssl/certs/ca-certificates.crt

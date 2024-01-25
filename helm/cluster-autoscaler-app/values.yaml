@@ -57,11 +57,12 @@ azure:
   # -- Azure VM type.
   vmType: VMSS
 
-clusterAutoscalerResources:
-  limits:
-    memory: 400Mi
+# -- Container resource requests and limits.
+resources:
   requests:
     cpu: 200m
+    memory: 400Mi
+  limits:
     memory: 400Mi
 
 verticalPodAutoscaler:

@@ -16,30 +16,6 @@
                 }
             }
         },
-        "clusterAutoscalerResources": {
-            "type": "object",
-            "properties": {
-                "limits": {
-                    "type": "object",
-                    "properties": {
-                        "memory": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "requests": {
-                    "type": "object",
-                    "properties": {
-                        "cpu": {
-                            "type": "string"
-                        },
-                        "memory": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
         "clusterID": {
             "type": "string"
         },
@@ -149,6 +125,30 @@
             "properties": {
                 "domain": {
                     "type": "string"
+                }
+            }
+        },
+        "resources": {
+            "type": "object",
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "properties": {
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "requests": {
+                    "type": "object",
+                    "properties": {
+                        "cpu": {
+                            "type": "string"
+                        },
+                        "memory": {
+                            "type": "string"
+                        }
+                    }
                 }
             }
         },
