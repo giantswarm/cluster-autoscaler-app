@@ -67,29 +67,18 @@ spec:
         {{- range $value := .Values.configmap.balancingIgnoreLabels }}
         - --balancing-ignore-label={{ $value }}
         {{- end }}
+        {{- if eq .Values.provider "azure" }}
         env:
-        {{- if eq .Values.isManagementCluster true }}
-        {{- if eq .Values.provider "azure" }}
-        - name: ARM_RESOURCE_GROUP
-          value: {{ .Values.managementCluster.name }}
-        - name: ARM_USE_MANAGED_IDENTITY_EXTENSION
-          value: {{ quote .Values.azure.managedIdentity }}
-        - name: ARM_VM_TYPE
-          value: {{ .Values.azure.vmType }}
-        {{- end }}
-        {{- else }}
-        {{- if eq .Values.provider "azure" }}
-        {{- if ne .Values.azure.subscriptionID "" }}
+        {{- if and (not .Values.isManagementCluster) .Values.azure.subscriptionID }}
         - name: ARM_SUBSCRIPTION_ID
           value: {{ .Values.azure.subscriptionID }}
         {{- end }}
         - name: ARM_RESOURCE_GROUP
-          value: {{ .Values.clusterID }}
+          value: {{ $cluster }}
         - name: ARM_USE_MANAGED_IDENTITY_EXTENSION
-          value: {{ quote .Values.azure.managedIdentity }}
+          value: {{ .Values.azure.managedIdentity | quote }}
         - name: ARM_VM_TYPE
           value: {{ .Values.azure.vmType }}
-        {{- end }}
         {{- end }}
         ports:
         - name: metrics
