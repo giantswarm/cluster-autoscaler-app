@@ -44,8 +44,6 @@ spec:
       {{- $cluster := .Values.isManagementCluster | ternary .Values.managementCluster.name .Values.clusterID }}
       - name: {{ .Values.name }}
         image: {{ $registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
-        resources:
-          {{- toYaml .Values.clusterAutoscalerResources | nindent 10 }}
         command:
         - ./cluster-autoscaler
         - --v=4
@@ -109,6 +107,8 @@ spec:
         - name: metrics
           protocol: TCP
           containerPort: 8085
+        resources:
+          {{- toYaml .Values.clusterAutoscalerResources | nindent 10 }}
         volumeMounts:
         - name: ssl-certs
           mountPath: /etc/ssl/certs/ca-certificates.crt
