@@ -14,6 +14,10 @@ configmap:
   skipNodesWithSystemPods: "true"
   balanceSimilarNodeGroups: "true"
   newPodScaleUpDelay: 0s
+  balancingIgnoreLabels:
+  - ip
+  - vpc.amazonaws.com/eniConfig
+  - giantswarm.io/machine-deployment
 
 isManagementCluster: false
 managementCluster:
@@ -54,11 +58,6 @@ verticalPodAutoscaler:
 
 registry:
   domain: gsoci.azurecr.io
-
-balancingIgnoreLabels:
-  balancing-ignore-label_1: ip
-  balancing-ignore-label_2: vpc.amazonaws.com/eniConfig
-  balancing-ignore-label_3: giantswarm.io/machine-deployment
 
 # Node-level settings for the deployment
 node:

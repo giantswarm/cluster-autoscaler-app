@@ -45,26 +45,27 @@ spec:
       - name: {{ .Values.name }}
         image: {{ $registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
         command:
-        - ./cluster-autoscaler
+        - /cluster-autoscaler
+        args:
         - --v=4
-        - --expander={{ .Values.configmap.expander }}
         - --logtostderr=true
+        - --stderrthreshold=info
+        - --expander={{ .Values.configmap.expander }}
         - --cloud-provider={{ include "cloud-provider" . }}
         {{- if eq .Values.provider "aws" }}
         - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ $cluster }}
         {{- else if eq .Values.provider "azure" }}
         - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ $cluster }}
         {{- end }}
-        - --balance-similar-node-groups={{ .Values.configmap.balanceSimilarNodeGroups }}
-        - --skip-nodes-with-local-storage={{ .Values.configmap.skipNodesWithLocalStorage }}
-        - --skip-nodes-with-system-pods={{ .Values.configmap.skipNodesWithSystemPods }}
-        - --scale-down-unneeded-time={{ .Values.configmap.scaleDownUnneededTime }}
-        - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
         - --scan-interval={{ .Values.configmap.scanInterval }}
-        - --stderrthreshold=info
+        - --skip-nodes-with-system-pods={{ .Values.configmap.skipNodesWithSystemPods }}
+        - --skip-nodes-with-local-storage={{ .Values.configmap.skipNodesWithLocalStorage }}
         - --new-pod-scale-up-delay={{ .Values.configmap.newPodScaleUpDelay }}
-        {{- range $key, $value := .Values.balancingIgnoreLabels }}
-        - --{{ $key | mustRegexFind "^[^_]+" }}={{ $value }}
+        - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
+        - --scale-down-unneeded-time={{ .Values.configmap.scaleDownUnneededTime }}
+        - --balance-similar-node-groups={{ .Values.configmap.balanceSimilarNodeGroups }}
+        {{- range $value := .Values.configmap.balancingIgnoreLabels }}
+        - --balancing-ignore-label={{ $value }}
         {{- end }}
         env:
         {{- if eq .Values.isManagementCluster true }}

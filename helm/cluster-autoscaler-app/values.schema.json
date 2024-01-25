@@ -16,20 +16,6 @@
                 }
             }
         },
-        "balancingIgnoreLabels": {
-            "type": "object",
-            "properties": {
-                "balancing-ignore-label_1": {
-                    "type": "string"
-                },
-                "balancing-ignore-label_2": {
-                    "type": "string"
-                },
-                "balancing-ignore-label_3": {
-                    "type": "string"
-                }
-            }
-        },
         "clusterAutoscalerResources": {
             "type": "object",
             "properties": {
@@ -62,6 +48,12 @@
             "properties": {
                 "balanceSimilarNodeGroups": {
                     "type": "string"
+                },
+                "balancingIgnoreLabels": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "expander": {
                     "type": "string"
