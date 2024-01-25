@@ -19,9 +19,12 @@ spec:
         runAsUser: {{ .Values.userID }}
         runAsGroup: {{ .Values.groupID }}
       tolerations:
-      - effect: NoSchedule
-        operator: "Exists"
-        key: node-role.kubernetes.io/master
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
       {{- if ((.Values.node).nodeSelector) }}
       nodeSelector:
         {{- if and (hasKey .Values.node.nodeSelector "node-role.kubernetes.io/control-plane") (semverCompare "<1.24.0" .Capabilities.KubeVersion.Version) }}
