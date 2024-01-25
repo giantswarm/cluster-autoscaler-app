@@ -19,21 +19,13 @@ configmap:
   - vpc.amazonaws.com/eniConfig
   - giantswarm.io/machine-deployment
 
-isManagementCluster: false
-managementCluster:
-  name: ""
-
 image:
+  # -- Registry host to pull images from.
+  # This value is set automatically. Do not overwrite it.
   registry: gsoci.azurecr.io
   name: giantswarm/cluster-autoscaler
   tag: v1.25.3
 
-# clusterID is dynamic environment value, calculated after cluster creation
-# applies only to Giant Swarm clusters
-clusterID: "test-cluster"
-# provider is dynamic environment value, which comes from application catalog configuration
-# applies only to Giant Swarm clusters
-provider: "aws"
 # azure contains the configuration values required by the azure provider and can be overridden
 # with custom values
 azure:
@@ -56,9 +48,6 @@ verticalPodAutoscaler:
     cpu: 200m
     memory: 400Mi
 
-registry:
-  domain: gsoci.azurecr.io
-
 # Node-level settings for the deployment
 node:
   # sets spec.template.spec.nodeSelector for the deployment
@@ -69,6 +58,31 @@ node:
   # path to the CA bundle on the node
   caBundlePath: "/etc/ssl/certs/ca-certificates.crt"
 
+# Below are configuration values that you should not overwrite or set yourself.
+
+# -- Provider the cluster is running on.
+# This value is set automatically. Do not overwrite it.
+provider: aws
+
+# -- If the chart is installed on a management cluster or not.
+# This value is set automatically. Do not overwrite it.
+isManagementCluster: false
+managementCluster:
+  # -- Name of the management cluster this chart is installed on.
+  # This value is set automatically. Do not overwrite it.
+  name: sc4l3
+
+# -- Cluster ID.
+# This value is set automatically. Do not overwrite it.
+clusterID: sc4l3
+
+registry:
+  # -- Registry host to pull images from.
+  # This value is set automatically. Do not overwrite it.
+  domain: gsoci.azurecr.io
+
 global:
   podSecurityStandards:
+    # -- If Pod Security Standards are being used or not.
+    # This value is set automatically. Do not overwrite it.
     enforced: false
