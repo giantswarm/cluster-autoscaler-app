@@ -1,9 +1,6 @@
 name: cluster-autoscaler
 namespace: kube-system
 
-userID: 65534
-groupID: 65534
-
 image:
   # -- Registry host to pull images from.
   # This value is set automatically. Do not overwrite it.
@@ -12,6 +9,19 @@ image:
   name: giantswarm/cluster-autoscaler
   # -- Image tag.
   tag: v1.25.3
+
+# -- Container security context.
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 1000
+  allowPrivilegeEscalation: false
+  seccompProfile:
+    type: RuntimeDefault
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
 
 configmap:
   # -- Type of node group expander to be used in scale up. Available values:

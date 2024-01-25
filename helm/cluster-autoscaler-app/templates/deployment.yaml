@@ -15,9 +15,6 @@ spec:
         {{- include "cluster-autoscaler.labels" . | nindent 8 }}
     spec:
       serviceAccountName: {{ .Values.name }}
-      securityContext:
-        runAsUser: {{ .Values.userID }}
-        runAsGroup: {{ .Values.groupID }}
       tolerations:
       - key: node-role.kubernetes.io/control-plane
         operator: Exists
@@ -44,6 +41,8 @@ spec:
       {{- $cluster := .Values.isManagementCluster | ternary .Values.managementCluster.name .Values.clusterID }}
       - name: {{ .Values.name }}
         image: {{ $registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 10 }}
         command:
         - /cluster-autoscaler
         args:
