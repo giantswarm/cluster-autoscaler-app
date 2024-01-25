@@ -42,12 +42,8 @@ spec:
       containers:
       {{- $registry := .Values.isManagementCluster | ternary .Values.registry.domain .Values.image.registry }}
       {{- $cluster := .Values.isManagementCluster | ternary .Values.managementCluster.name .Values.clusterID }}
-      {{- if eq .Values.isManagementCluster true }}
-      - image: "{{ .Values.registry.domain }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
-      {{- else }}
-      - image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
-      {{- end }}
-        name: {{ .Values.name }}
+      - name: {{ .Values.name }}
+        image: {{ $registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
         resources:
           {{- toYaml .Values.clusterAutoscalerResources | nindent 10 }}
         command:
@@ -117,7 +113,6 @@ spec:
         - name: ssl-certs
           mountPath: /etc/ssl/certs/ca-certificates.crt
           readOnly: true
-        imagePullPolicy: "Always"
       volumes:
       - name: ssl-certs
         hostPath:
