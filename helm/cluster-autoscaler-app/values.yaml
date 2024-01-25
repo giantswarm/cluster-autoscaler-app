@@ -65,21 +65,19 @@ resources:
   limits:
     memory: 400Mi
 
+node:
+  # -- Node selector for the autoscaler pod.
+  # `control-plane` gets translated to `master` and vice versa depending on Kubernetes version.
+  nodeSelector:
+    node-role.kubernetes.io/control-plane: ""
+  # -- Host path of the CA bundle.
+  caBundlePath: /etc/ssl/certs/ca-certificates.crt
+
 autoscaling:
   # -- Lower bounds for vertical autoscaling.
   minAllowed:
     cpu: 200m
     memory: 400Mi
-
-# Node-level settings for the deployment
-node:
-  # sets spec.template.spec.nodeSelector for the deployment
-  # The default value should be ok for most cases running on control plane nodes (it gets translated to node-role.kubernetes.io/master for k8s <v1.24.0), managed k8s services (e.g. EKS) need customization.
-  # Set it to {} to remove the nodeSelector.
-  nodeSelector:
-    node-role.kubernetes.io/control-plane: ""
-  # path to the CA bundle on the node
-  caBundlePath: "/etc/ssl/certs/ca-certificates.crt"
 
 # Below are configuration values that you should not overwrite or set yourself.
 
