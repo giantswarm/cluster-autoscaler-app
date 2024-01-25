@@ -25,13 +25,18 @@ spec:
       - key: node-role.kubernetes.io/master
         operator: Exists
         effect: NoSchedule
-      {{- if ((.Values.node).nodeSelector) }}
+      {{- with .Values.node.nodeSelector }}
+      {{- if and (semverCompare ">=1.24.0" $.Capabilities.KubeVersion.Version) (hasKey . "node-role.kubernetes.io/master") }}
+      {{- $value := get . "node-role.kubernetes.io/master" }}
+      {{- $_ := unset . "node-role.kubernetes.io/master" }}
+      {{- $_ := merge . (dict "node-role.kubernetes.io/control-plane" $value) }}
+      {{- else if and (semverCompare "<1.24.0" $.Capabilities.KubeVersion.Version) (hasKey . "node-role.kubernetes.io/control-plane") }}
+      {{- $value := get . "node-role.kubernetes.io/control-plane" }}
+      {{- $_ := unset . "node-role.kubernetes.io/control-plane" }}
+      {{- $_ := merge . (dict "node-role.kubernetes.io/master" $value) }}
+      {{- end }}
       nodeSelector:
-        {{- if and (hasKey .Values.node.nodeSelector "node-role.kubernetes.io/control-plane") (semverCompare "<1.24.0" .Capabilities.KubeVersion.Version) }}
-        {{- toYaml (set (unset .Values.node.nodeSelector "node-role.kubernetes.io/control-plane") "node-role.kubernetes.io/master" "" ) | nindent 8 }}
-        {{- else }}
-        {{- toYaml .Values.node.nodeSelector | nindent 8 }}
-        {{- end }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       priorityClassName: giantswarm-critical
       containers:
