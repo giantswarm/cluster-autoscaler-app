@@ -6,7 +6,6 @@ metadata:
   labels:
     {{- include "cluster-autoscaler.labels" . | nindent 4 }}
 spec:
-  replicas: 1
   selector:
     matchLabels:
       {{- include "cluster-autoscaler.selectorLabels" . | nindent 6 }}
