@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.name }}
-  namespace: {{ .Values.namespace }}
+  name: {{ include "cluster-autoscaler.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "cluster-autoscaler.labels" . | nindent 4 }}
 spec:
@@ -14,7 +14,7 @@ spec:
       labels:
         {{- include "cluster-autoscaler.labels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ .Values.name }}
+      serviceAccountName: {{ include "cluster-autoscaler.fullname" . }}
       tolerations:
       - key: node-role.kubernetes.io/control-plane
         operator: Exists
@@ -39,7 +39,7 @@ spec:
       containers:
       {{- $registry := .Values.isManagementCluster | ternary .Values.registry.domain .Values.image.registry }}
       {{- $cluster := .Values.isManagementCluster | ternary .Values.managementCluster.name .Values.clusterID }}
-      - name: {{ .Values.name }}
+      - name: cluster-autoscaler
         image: {{ $registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
         securityContext:
           {{- toYaml .Values.securityContext | nindent 10 }}

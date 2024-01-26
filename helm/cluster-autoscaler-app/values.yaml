@@ -1,6 +1,3 @@
-name: cluster-autoscaler
-namespace: kube-system
-
 image:
   # -- Registry host to pull images from.
   # This value is set automatically. Do not overwrite it.

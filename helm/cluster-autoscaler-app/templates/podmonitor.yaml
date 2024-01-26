@@ -1,8 +1,8 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PodMonitor
 metadata:
-  name: {{ .Values.name }}
-  namespace: {{ .Values.namespace }}
+  name: {{ include "cluster-autoscaler.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "cluster-autoscaler.labels" . | nindent 4 }}
 spec:

@@ -2,7 +2,7 @@
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
-  name: {{ .Values.name }}
+  name: {{ include "cluster-autoscaler.fullname" . }}
   labels:
     {{- include "cluster-autoscaler.labels" . | nindent 4 }}
   annotations:

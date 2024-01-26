@@ -2,8 +2,8 @@
 apiVersion: kyverno.io/v2alpha1
 kind: PolicyException
 metadata:
-  name: {{ .Values.name }}
-  namespace: {{ .Values.namespace }}
+  name: {{ include "cluster-autoscaler.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "cluster-autoscaler.labels" . | nindent 4 }}
 spec:
@@ -15,9 +15,9 @@ spec:
         - ReplicaSet
         - Pod
         names:
-        - {{ .Values.name }}*
+        - {{ include "cluster-autoscaler.fullname" . }}*
         namespaces:
-        - {{ .Values.namespace }}
+        - {{ .Release.Namespace }}
   exceptions:
   - policyName: disallow-host-path
     ruleNames:
