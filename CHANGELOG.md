@@ -11,6 +11,11 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Add configurable `node.nodeSelector` in values
 - Add configurable `node.caBundlePath` in values
+- Repository: Rework chart. ([#237](https://github.com/giantswarm/cluster-autoscaler-app/pull/237))
+  - Repository: Add ABS & ATS.
+  - Helpers: Add `fullname` template.
+  - Helpers: Add `application.giantswarm.io/team` label.
+  - Deployment: Tolerate `control-plane`.
 
 ### Changed
 
@@ -18,6 +23,27 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 - Update cluster-autoscaler to version `1.25.3`.
 - Replace condition for PSP CR installation.
 - Configure `gsoci.azurecr.io` as the default container image registry.
+- Repository: Rework chart. ([#237](https://github.com/giantswarm/cluster-autoscaler-app/pull/237))
+  - Chart: Make PSS compliant.
+  - Chart: Respect `.Release.Name` & `.Release.Namespace`.
+  - Values: Move `balancingIgnoreLabels` to `configmap`.
+  - Values: Rename `clusterAutoscalerResources` to `resources`.
+  - Values: Rename `verticalPodAutoscaler` to `autoscaling`.
+  - Helpers: Rename templates.
+  - Helpers: Keep `-app` suffix in `name` template.
+  - Deployment: Improve `nodeSelector` compatibility.
+
+### Removed
+
+- Repository: Rework chart. ([#237](https://github.com/giantswarm/cluster-autoscaler-app/pull/237))
+  - Values: Remove `port` & `serviceType`.
+  - Helpers: Remove `k8s-addon` label.
+  - RBAC: Remove PSP role & binding.
+  - Deployment: Remove `replicas`.
+  - Deployment: Remove `imagePullPolicy`.
+  - Deployment: Remove `aws-use-static-instance-list` workaround.
+  - Policy Exception: Remove `-exceptions` suffix.
+  - Service: Replace by pod monitor.
 
 ## [1.25.1-gs2] - 2023-06-30
 
