@@ -1,0 +1,30 @@
+{{- if .Capabilities.APIVersions.Has "kyverno.io/v2alpha1/PolicyException" }}
+apiVersion: kyverno.io/v2alpha1
+kind: PolicyException
+metadata:
+  name: {{ include "cluster-autoscaler.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "cluster-autoscaler.labels" . | nindent 4 }}
+spec:
+  match:
+    any:
+    - resources:
+        kinds:
+        - Deployment
+        - ReplicaSet
+        - Pod
+        names:
+        - {{ include "cluster-autoscaler.fullname" . }}*
+        namespaces:
+        - {{ .Release.Namespace }}
+  exceptions:
+  - policyName: disallow-host-path
+    ruleNames:
+    - host-path
+    - autogen-host-path
+  - policyName: restrict-volume-types
+    ruleNames:
+    - restricted-volumes
+    - autogen-restricted-volumes
+{{- end }}
