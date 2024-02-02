@@ -1,0 +1,4 @@
+chart-dir: helm/cluster-autoscaler-app
+replace-chart-version-with-git: true
+generate-metadata: true
+catalog-base-url: https://giantswarm.github.io/default-catalog/

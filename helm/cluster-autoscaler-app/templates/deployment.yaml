@@ -1,105 +1,95 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.name }}
-  namespace: {{ .Values.namespace }}
+  name: {{ include "cluster-autoscaler.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "labels.common" . | nindent 4 }}
+    {{- include "cluster-autoscaler.labels" . | nindent 4 }}
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      {{- include "labels.selector" . | nindent 6 }}
+      {{- include "cluster-autoscaler.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "labels.common" . | nindent 8 }}
+        {{- include "cluster-autoscaler.labels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ .Values.name }}
-      securityContext:
-        runAsUser: {{ .Values.userID }}
-        runAsGroup: {{ .Values.groupID }}
+      serviceAccountName: {{ include "cluster-autoscaler.fullname" . }}
       tolerations:
-      - effect: NoSchedule
-        operator: "Exists"
-        key: node-role.kubernetes.io/master
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+      - key: node-role.kubernetes.io/master
+        operator: Exists
+        effect: NoSchedule
+      {{- with .Values.node.nodeSelector }}
+      {{- if and (semverCompare ">=1.24.0" $.Capabilities.KubeVersion.Version) (hasKey . "node-role.kubernetes.io/master") }}
+      {{- $value := get . "node-role.kubernetes.io/master" }}
+      {{- $_ := unset . "node-role.kubernetes.io/master" }}
+      {{- $_ := merge . (dict "node-role.kubernetes.io/control-plane" $value) }}
+      {{- else if and (semverCompare "<1.24.0" $.Capabilities.KubeVersion.Version) (hasKey . "node-role.kubernetes.io/control-plane") }}
+      {{- $value := get . "node-role.kubernetes.io/control-plane" }}
+      {{- $_ := unset . "node-role.kubernetes.io/control-plane" }}
+      {{- $_ := merge . (dict "node-role.kubernetes.io/master" $value) }}
+      {{- end }}
       nodeSelector:
-        node-role.kubernetes.io/master: ""
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       priorityClassName: giantswarm-critical
       containers:
-        {{- if eq .Values.isManagementCluster true }}
-        - image: "{{ .Values.registry.domain }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
-        {{- else }}
-        - image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+      {{- $registry := .Values.isManagementCluster | ternary .Values.registry.domain .Values.image.registry }}
+      {{- $cluster := .Values.isManagementCluster | ternary .Values.managementCluster.name .Values.clusterID }}
+      - name: cluster-autoscaler
+        image: {{ $registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 10 }}
+        command:
+        - /cluster-autoscaler
+        args:
+        - --v=4
+        - --logtostderr=true
+        - --stderrthreshold=info
+        - --expander={{ .Values.configmap.expander }}
+        - --cloud-provider={{ include "cloud-provider" . }}
+        {{- if eq .Values.provider "aws" }}
+        - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ $cluster }}
+        {{- else if eq .Values.provider "azure" }}
+        - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ $cluster }}
         {{- end }}
-          name: {{ .Values.name }}
-          resources:
-            {{- toYaml .Values.clusterAutoscalerResources | nindent 12 }}
-          command:
-            - ./cluster-autoscaler
-            - --v=4
-            - --expander={{ .Values.configmap.expander }}
-            - --logtostderr=true
-            # Don't use auto discovery in integration tests.
-            {{- if eq .Values.isManagementCluster true }}
-            - --cloud-provider={{ include "cloud-provider" . }}
-            {{- if eq .Values.provider "aws" }}
-            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.managementCluster.name }}
-            {{- else if eq .Values.provider "azure" }}
-            - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.managementCluster.name }}
-            {{- end }}
-            {{- else }}
-            - --cloud-provider={{ include "cloud-provider" . }}
-            {{- if eq .Values.provider "aws" }}
-            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.clusterID }}
-            # Turning runtime instance info acquisition off because of
-            # https://github.com/kubernetes/autoscaler/issues/3076
-            - --aws-use-static-instance-list=true
-            {{- else if eq .Values.provider "azure" }}
-            - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ .Values.clusterID }}
-            {{- end }}
-            {{- end }}
-            - --balance-similar-node-groups={{ .Values.configmap.balanceSimilarNodeGroups }}
-            - --skip-nodes-with-local-storage={{ .Values.configmap.skipNodesWithLocalStorage }}
-            - --skip-nodes-with-system-pods={{ .Values.configmap.skipNodesWithSystemPods }}
-            - --scale-down-unneeded-time={{ .Values.configmap.scaleDownUnneededTime }}
-            - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
-            - --scan-interval={{ .Values.configmap.scanInterval }}
-            - --stderrthreshold=info
-            - --new-pod-scale-up-delay={{ .Values.configmap.newPodScaleUpDelay }}
-            {{- range $key, $value := .Values.balancingIgnoreLabels }}
-            - --{{ $key | mustRegexFind "^[^_]+" }}={{ $value }}
-            {{- end }}
-          env:
-          {{- if eq .Values.isManagementCluster true }}
-          {{- if eq .Values.provider "azure" }}
-            - name: ARM_RESOURCE_GROUP
-              value: {{ .Values.managementCluster.name }}
-            - name: ARM_USE_MANAGED_IDENTITY_EXTENSION
-              value: {{ quote .Values.azure.managedIdentity }}
-            - name: ARM_VM_TYPE
-              value: {{ .Values.azure.vmType }}
-          {{- end }}
-          {{- else }}
-          {{- if eq .Values.provider "azure" }}
-            {{- if ne .Values.azure.subscriptionID "" }}
-            - name: ARM_SUBSCRIPTION_ID
-              value: {{ .Values.azure.subscriptionID }}
-            {{- end }}
-            - name: ARM_RESOURCE_GROUP
-              value: {{ .Values.clusterID }}
-            - name: ARM_USE_MANAGED_IDENTITY_EXTENSION
-              value: {{ quote .Values.azure.managedIdentity }}
-            - name: ARM_VM_TYPE
-              value: {{ .Values.azure.vmType }}
-          {{- end }}
-          {{- end }}
-          volumeMounts:
-            - name: ssl-certs
-              mountPath: /etc/ssl/certs/ca-certificates.crt
-              readOnly: true
-          imagePullPolicy: "Always"
-      volumes:
+        - --scan-interval={{ .Values.configmap.scanInterval }}
+        - --skip-nodes-with-system-pods={{ .Values.configmap.skipNodesWithSystemPods }}
+        - --skip-nodes-with-local-storage={{ .Values.configmap.skipNodesWithLocalStorage }}
+        - --new-pod-scale-up-delay={{ .Values.configmap.newPodScaleUpDelay }}
+        - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
+        - --scale-down-unneeded-time={{ .Values.configmap.scaleDownUnneededTime }}
+        - --balance-similar-node-groups={{ .Values.configmap.balanceSimilarNodeGroups }}
+        {{- range $value := .Values.configmap.balancingIgnoreLabels }}
+        - --balancing-ignore-label={{ $value }}
+        {{- end }}
+        {{- if eq .Values.provider "azure" }}
+        env:
+        {{- if and (not .Values.isManagementCluster) .Values.azure.subscriptionID }}
+        - name: ARM_SUBSCRIPTION_ID
+          value: {{ .Values.azure.subscriptionID }}
+        {{- end }}
+        - name: ARM_RESOURCE_GROUP
+          value: {{ $cluster }}
+        - name: ARM_USE_MANAGED_IDENTITY_EXTENSION
+          value: {{ .Values.azure.managedIdentity | quote }}
+        - name: ARM_VM_TYPE
+          value: {{ .Values.azure.vmType }}
+        {{- end }}
+        ports:
+        - name: metrics
+          protocol: TCP
+          containerPort: 8085
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        volumeMounts:
         - name: ssl-certs
-          hostPath:
-            path: "/etc/ssl/certs/ca-certificates.crt"
+          mountPath: /etc/ssl/certs/ca-certificates.crt
+          readOnly: true
+      volumes:
+      - name: ssl-certs
+        hostPath:
+          path: {{ .Values.node.caBundlePath }}

@@ -1,10 +1,10 @@
-apiVersion: v1
-appVersion: v1.24.3
-description: A Helm chart for the cluster autoscaler.
-icon: https://s.giantswarm.io/app-icons/k8s-initiator/1/dark.svg
-home: https://github.com/giantswarm/cluster-autoscaler-app
+apiVersion: v2
 name: cluster-autoscaler-app
-version: [[ .Version ]]
+description: A Helm chart for the Cluster Autoscaler.
+version: 1.24.3-gs4
+appVersion: 1.24.3
+home: https://github.com/giantswarm/cluster-autoscaler-app
+icon: https://s.giantswarm.io/app-icons/k8s-initiator/1/dark.svg
 annotations:
-  application.giantswarm.io/team: "turtles"
-  config.giantswarm.io/version: 1.x.x
+  application.giantswarm.io/team: turtles
+  ui.giantswarm.io/logo: https://s.giantswarm.io/app-icons/k8s-initiator/1/dark.svg
