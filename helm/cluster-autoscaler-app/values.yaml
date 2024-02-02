@@ -1,75 +1,116 @@
-name: cluster-autoscaler
-namespace: kube-system
-serviceType: managed
-
-userID: 65534
-groupID: 65534
-
-port: 8085
-
-# Make sure to update the docs at https://github.com/giantswarm/docs/blob/master/src/layouts/shortcodes/autoscaler_utilization_threshold.html if you change the defaults below
-configmap:
-  expander: least-waste
-  scanInterval: 30s
-  scaleDownUnneededTime: 5m0s
-  scaleDownUtilizationThreshold: 0.7
-  skipNodesWithLocalStorage: "false"
-  skipNodesWithSystemPods: "true"
-  balanceSimilarNodeGroups: "true"
-  newPodScaleUpDelay: 0s
-
-isManagementCluster: false
-managementCluster:
-  name: ""
-
 image:
-  registry: docker.io
+  # -- Registry host to pull images from.
+  # This value is set automatically. Do not overwrite it.
+  registry: gsoci.azurecr.io
+  # -- Image name.
   name: giantswarm/cluster-autoscaler
+  # -- Image tag.
   tag: v1.24.3
 
-# clusterID is dynamic environment value, calculated after cluster creation
-# applies only to Giant Swarm clusters
-clusterID: "test-cluster"
-# provider is dynamic environment value, which comes from application catalog configuration
-# applies only to Giant Swarm clusters
-provider: "aws"
-# azure contains the configuration values required by the azure provider and can be overridden
-# with custom values
+# -- Container security context.
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 1000
+  allowPrivilegeEscalation: false
+  seccompProfile:
+    type: RuntimeDefault
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+
+configmap:
+  # -- Type of node group expander to be used in scale up. Available values:
+  #
+  # - random: Selects a node group at random.
+  # - most-pods: Selects a node group that fits the most pods.
+  # - least-waste: Selects a node group that leaves the least fraction of CPU and Memory.
+  # - price: Selects a node group that is the most cost-effective and consistent with the preferred node size for the cluster.
+  # - priority: Selects a node group based on a user-configured priorities assigned to group names.
+  # - grpc: Uses the gRPC client expander to call to an external gRPC server to select a node group for scale up.
+  #
+  # Specifying multiple values separated by commas will call the expanders in succession until there is only one option remaining.
+  # Ties still existing after this process are broken randomly.
+  expander: least-waste
+  # -- How often cluster is reevaluated for scale up or down.
+  scanInterval: 30s
+  # -- If true cluster autoscaler will never delete nodes with pods from kube-system (except for DaemonSet or mirror pods).
+  skipNodesWithSystemPods: "true"
+  # -- If true cluster autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath.
+  skipNodesWithLocalStorage: "false"
+  # -- Pods less than this old will not be considered for scale-up.
+  # Can be increased for individual pods through annotation 'cluster-autoscaler.kubernetes.io/pod-scale-up-delay'.
+  newPodScaleUpDelay: 0s
+  # -- The maximum value between the sum of cpu requests and sum of memory requests of all pods running on the node
+  # divided by node's corresponding allocatable resource, below which a node can be considered for scale down.
+  # Keep https://github.com/giantswarm/docs/blob/main/src/layouts/shortcodes/autoscaler_utilization_threshold.html updated.
+  scaleDownUtilizationThreshold: 0.7
+  # -- How long a node should be unneeded before it is eligible for scale down.
+  scaleDownUnneededTime: 5m0s
+  # -- Detect similar node groups and balance the number of nodes between them.
+  balanceSimilarNodeGroups: "true"
+  # -- Specifies a label to ignore in addition to the basic and cloud-provider set of labels when comparing if two node groups are similar.
+  balancingIgnoreLabels:
+  - ip
+  - vpc.amazonaws.com/eniConfig
+  - giantswarm.io/machine-deployment
+
 azure:
-  # Azure subscription where the VMSS are created
+  # -- ID of the subscription the VMSSs are contained in.
   subscriptionID: ""
-  # Whether or not to use the credentials automatically provisioned on the VMSS instances
+  # -- If the VMSS instances' managed identity should be used or not.
   managedIdentity: true
-  # Type of deployment used on Azure
+  # -- Azure VM type.
   vmType: VMSS
 
-clusterAutoscalerResources:
-  limits:
-    memory: 400Mi
+# -- Container resource requests and limits.
+resources:
   requests:
     cpu: 200m
     memory: 400Mi
+  limits:
+    memory: 400Mi
 
-verticalPodAutoscaler:
+node:
+  # -- Node selector for the autoscaler pod.
+  # `control-plane` gets translated to `master` and vice versa depending on Kubernetes version.
+  nodeSelector:
+    node-role.kubernetes.io/control-plane: ""
+  # -- Host path of the CA bundle.
+  caBundlePath: /etc/ssl/certs/ca-certificates.crt
+
+autoscaling:
+  # -- Lower bounds for vertical autoscaling.
   minAllowed:
     cpu: 200m
     memory: 400Mi
 
-registry:
-  domain: docker.io
+# Below are configuration values that you should not overwrite or set yourself.
 
-balancingIgnoreLabels:
-  balancing-ignore-label_1: ip
-  balancing-ignore-label_2: vpc.amazonaws.com/eniConfig
-  balancing-ignore-label_3: giantswarm.io/machine-deployment
+# -- Provider the cluster is running on.
+# This value is set automatically. Do not overwrite it.
+provider: aws
+
+# -- If the chart is installed on a management cluster or not.
+# This value is set automatically. Do not overwrite it.
+isManagementCluster: false
+managementCluster:
+  # -- Name of the management cluster this chart is installed on.
+  # This value is set automatically. Do not overwrite it.
+  name: sc4l3
+
+# -- Cluster ID.
+# This value is set automatically. Do not overwrite it.
+clusterID: sc4l3
+
+registry:
+  # -- Registry host to pull images from.
+  # This value is set automatically. Do not overwrite it.
+  domain: gsoci.azurecr.io
 
 global:
   podSecurityStandards:
+    # -- If Pod Security Standards are being used or not.
+    # This value is set automatically. Do not overwrite it.
     enforced: false
-
-serviceMonitor:
-  enabled: true
-  # -- (duration) Prometheus scrape interval.
-  interval: "60s"
-  # -- (duration) Prometheus scrape timeout.
-  scrapeTimeout: "45s"
