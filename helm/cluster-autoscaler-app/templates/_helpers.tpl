@@ -46,6 +46,8 @@ Support cloud provider aliases.
 {{- define "cloud-provider" -}}
 {{- if eq .Values.provider "gcp" -}}
 gce
+{{- else if eq .Values.provider "capa" -}}
+aws
 {{- else -}}
 {{ .Values.provider }}
 {{- end -}}

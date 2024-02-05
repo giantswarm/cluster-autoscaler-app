@@ -1,6 +1,6 @@
 # cluster-autoscaler-app
 
-![Version: 1.25.3](https://img.shields.io/badge/Version-1.25.3-informational?style=flat-square) ![AppVersion: 1.25.3](https://img.shields.io/badge/AppVersion-1.25.3-informational?style=flat-square)
+![Version: 1.27.3-gs5](https://img.shields.io/badge/Version-1.27.3--gs5-informational?style=flat-square) ![AppVersion: 1.27.3](https://img.shields.io/badge/AppVersion-1.27.3-informational?style=flat-square)
 
 A Helm chart for the Cluster Autoscaler.
 
@@ -27,12 +27,13 @@ A Helm chart for the Cluster Autoscaler.
 | global.podSecurityStandards.enforced | bool | `false` | If Pod Security Standards are being used or not. This value is set automatically. Do not overwrite it. |
 | image.name | string | `"giantswarm/cluster-autoscaler"` | Image name. |
 | image.registry | string | `"gsoci.azurecr.io"` | Registry host to pull images from. This value is set automatically. Do not overwrite it. |
-| image.tag | string | `"v1.25.3"` | Image tag. |
+| image.tag | string | `"v1.27.3"` | Image tag. |
 | isManagementCluster | bool | `false` | If the chart is installed on a management cluster or not. This value is set automatically. Do not overwrite it. |
-| managementCluster.name | string | `"sc4l3"` | Name of the management cluster this chart is installed on. This value is set automatically. Do not overwrite it. |
+| managementCluster | string | `"sc4l3"` | Name of the management cluster this chart is installed on. This value is set automatically. Do not overwrite it. |
 | node.caBundlePath | string | `"/etc/ssl/certs/ca-certificates.crt"` | Host path of the CA bundle. |
 | node.nodeSelector | object | `{"node-role.kubernetes.io/control-plane":""}` | Node selector for the autoscaler pod. `control-plane` gets translated to `master` and vice versa depending on Kubernetes version. |
 | provider | string | `"aws"` | Provider the cluster is running on. This value is set automatically. Do not overwrite it. |
 | registry.domain | string | `"gsoci.azurecr.io"` | Registry host to pull images from. This value is set automatically. Do not overwrite it. |
 | resources | object | `{"limits":{"memory":"400Mi"},"requests":{"cpu":"200m","memory":"400Mi"}}` | Container resource requests and limits. |
 | securityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"readOnlyRootFilesystem":true,"runAsGroup":1000,"runAsNonRoot":true,"runAsUser":1000,"seccompProfile":{"type":"RuntimeDefault"}}` | Container security context. |
+| serviceAccount.annotations | object | `{}` | Annotations of the service account. |

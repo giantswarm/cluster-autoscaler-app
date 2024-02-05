@@ -101,12 +101,7 @@
             "type": "boolean"
         },
         "managementCluster": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                }
-            }
+            "type": "string"
         },
         "node": {
             "type": "object",
@@ -195,6 +190,14 @@
                             "type": "string"
                         }
                     }
+                }
+            }
+        },
+        "serviceAccount": {
+            "type": "object",
+            "properties": {
+                "annotations": {
+                    "type": "object"
                 }
             }
         }

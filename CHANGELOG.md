@@ -9,8 +9,6 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ### Added
 
-- Add configurable `node.nodeSelector` in values
-- Add configurable `node.caBundlePath` in values
 - Repository: Rework chart. ([#237](https://github.com/giantswarm/cluster-autoscaler-app/pull/237))
   - Repository: Add ABS & ATS.
   - Helpers: Add `fullname` template.
@@ -19,10 +17,6 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ### Changed
 
-- Change ScaleDownUtilizationThreshold default from 0.5 to 0.7
-- Update cluster-autoscaler to version `1.25.3`.
-- Replace condition for PSP CR installation.
-- Configure `gsoci.azurecr.io` as the default container image registry.
 - Repository: Rework chart. ([#237](https://github.com/giantswarm/cluster-autoscaler-app/pull/237))
   - Chart: Make PSS compliant.
   - Chart: Respect `.Release.Name` & `.Release.Namespace`.
@@ -44,6 +38,44 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
   - Deployment: Remove `aws-use-static-instance-list` workaround.
   - Policy Exception: Remove `-exceptions` suffix.
   - Service: Replace by pod monitor.
+
+## [1.27.3-gs5] - 2024-01-11
+
+### Added
+
+- Add configurable `node.nodeSelector` in values
+- Add configurable `node.caBundlePath` in values
+
+## [1.27.3-gs4] - 2023-11-15
+
+### Added
+
+- Service monitor.
+
+## [1.27.3-gs3] - 2023-11-10
+
+### Added
+
+- Add service account annotations as value.
+
+## [1.27.3-gs2] - 2023-11-03
+
+### Changed
+
+- Change helm value `managementCluster` from object to string.
+
+## [1.27.3-gs1] - 2023-11-03
+
+### Added
+
+- Node Group Auto Discovery for CAPA MachinePools.
+
+### Changed
+
+- Update cluster-autoscaler to version `1.27.3`.
+- Change ScaleDownUtilizationThreshold default from 0.5 to 0.7
+- Replace condition for PSP CR installation.
+- Configure `gsoci.azurecr.io` as the default container image registry.
 
 ## [1.25.1-gs2] - 2023-06-30
 
@@ -324,7 +356,12 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.25.1-gs2...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs5...HEAD
+[1.27.3-gs5]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs4...v1.27.3-gs5
+[1.27.3-gs4]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs3...v1.27.3-gs4
+[1.27.3-gs3]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs2...v1.27.3-gs3
+[1.27.3-gs2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs1...v1.27.3-gs2
+[1.27.3-gs1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.25.1-gs2...v1.27.3-gs1
 [1.25.1-gs2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.25.1-gs1...v1.25.1-gs2
 [1.25.1-gs1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.24.0-gs2...v1.25.1-gs1
 [1.24.0-gs2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.24.0-gs1...v1.24.0-gs2

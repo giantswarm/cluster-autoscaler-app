@@ -1,3 +1,7 @@
+serviceAccount:
+  # -- Annotations of the service account.
+  annotations: {}
+
 image:
   # -- Registry host to pull images from.
   # This value is set automatically. Do not overwrite it.
@@ -5,7 +9,7 @@ image:
   # -- Image name.
   name: giantswarm/cluster-autoscaler
   # -- Image tag.
-  tag: v1.25.3
+  tag: v1.27.3
 
 # -- Container security context.
 securityContext:
@@ -95,10 +99,9 @@ provider: aws
 # -- If the chart is installed on a management cluster or not.
 # This value is set automatically. Do not overwrite it.
 isManagementCluster: false
-managementCluster:
-  # -- Name of the management cluster this chart is installed on.
-  # This value is set automatically. Do not overwrite it.
-  name: sc4l3
+# -- Name of the management cluster this chart is installed on.
+# This value is set automatically. Do not overwrite it.
+managementCluster: sc4l3
 
 # -- Cluster ID.
 # This value is set automatically. Do not overwrite it.
