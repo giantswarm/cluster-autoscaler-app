@@ -53,6 +53,8 @@ spec:
         - --cloud-provider={{ include "cloud-provider" . }}
         {{- if eq .Values.provider "aws" }}
         - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ $cluster }}
+        {{- else if eq .Values.provider "capa" }}
+        - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,sigs.k8s.io/cluster-api-provider-aws/cluster/{{ $cluster }}
         {{- else if eq .Values.provider "azure" }}
         - --node-group-auto-discovery=label:cluster-autoscaler-enabled=true,cluster-autoscaler-name={{ $cluster }}
         {{- end }}
