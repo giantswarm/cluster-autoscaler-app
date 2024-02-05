@@ -36,3 +36,4 @@ A Helm chart for the Cluster Autoscaler.
 | registry.domain | string | `"gsoci.azurecr.io"` | Registry host to pull images from. This value is set automatically. Do not overwrite it. |
 | resources | object | `{"limits":{"memory":"400Mi"},"requests":{"cpu":"200m","memory":"400Mi"}}` | Container resource requests and limits. |
 | securityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"readOnlyRootFilesystem":true,"runAsGroup":1000,"runAsNonRoot":true,"runAsUser":1000,"seccompProfile":{"type":"RuntimeDefault"}}` | Container security context. |
+| serviceAccount.annotations | object | `{}` | Annotations of the service account. |

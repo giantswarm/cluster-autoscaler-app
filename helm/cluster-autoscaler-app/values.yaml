@@ -1,3 +1,7 @@
+serviceAccount:
+  # -- Annotations of the service account.
+  annotations: {}
+
 image:
   # -- Registry host to pull images from.
   # This value is set automatically. Do not overwrite it.

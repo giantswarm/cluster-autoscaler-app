@@ -16,6 +16,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
   - Helpers: Add `fullname` template.
   - Helpers: Add `application.giantswarm.io/team` label.
   - Deployment: Tolerate `control-plane`.
+- Service Account: Add annotations.
+- Deployment: Add CAPA support.
 
 ### Changed
 
