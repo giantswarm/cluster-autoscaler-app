@@ -83,6 +83,9 @@ spec:
         {{- end }}
         {{- $proxy := deepCopy .Values.cluster.proxy |  mustMerge .Values.proxy }}
         {{- if and $proxy.noProxy $proxy.http $proxy.https }}
+        {{- if ne .Values.provider "azure" }}
+        env:
+        {{- end }}
         - name: NO_PROXY
           value: {{ $proxy.noProxy }}
         - name: no_proxy
