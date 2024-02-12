@@ -81,6 +81,21 @@ spec:
         - name: ARM_VM_TYPE
           value: {{ .Values.azure.vmType }}
         {{- end }}
+        {{- $proxy := deepCopy .Values.cluster.proxy |  mustMerge .Values.proxy }}
+        {{- if and $proxy.noProxy $proxy.http $proxy.https }}
+        - name: NO_PROXY
+          value: {{ $proxy.noProxy }}
+        - name: no_proxy
+          value: {{ $proxy.noProxy }}
+        - name: HTTP_PROXY
+          value: {{ $proxy.http }}
+        - name: http_proxy
+          value: {{ $proxy.http }}
+        - name: HTTPS_PROXY
+          value: {{ $proxy.https }}
+        - name: https_proxy
+          value: {{ $proxy.https }}
+        {{- end }}
         ports:
         - name: metrics
           protocol: TCP
