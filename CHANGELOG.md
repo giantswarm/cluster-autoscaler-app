@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.25.3-gs2] - 2024-02-12
+
 ### Added
 
 - Add possibility to use egress proxy.
@@ -336,7 +338,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.25.3-gs1...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.25.3-gs2...HEAD
+[1.25.3-gs2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.25.3-gs1...v1.25.3-gs2
 [1.25.3-gs1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.25.1-gs2...v1.25.3-gs1
 [1.25.1-gs2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.25.1-gs1...v1.25.1-gs2
 [1.25.1-gs1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.24.0-gs2...v1.25.1-gs1
