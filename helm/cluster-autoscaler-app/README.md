@@ -14,6 +14,7 @@ A Helm chart for the Cluster Autoscaler.
 | azure.managedIdentity | bool | `true` | If the VMSS instances' managed identity should be used or not. |
 | azure.subscriptionID | string | `""` | ID of the subscription the VMSSs are contained in. |
 | azure.vmType | string | `"VMSS"` | Azure VM type. |
+| cluster.proxy | object | `{"http":"","https":"","noProxy":""}` | Global proxy settings. This value is set automatically. Do not overwrite it. |
 | clusterID | string | `"sc4l3"` | Cluster ID. This value is set automatically. Do not overwrite it. |
 | configmap.balanceSimilarNodeGroups | string | `"true"` | Detect similar node groups and balance the number of nodes between them. |
 | configmap.balancingIgnoreLabels | list | `["ip","vpc.amazonaws.com/eniConfig","giantswarm.io/machine-deployment"]` | Specifies a label to ignore in addition to the basic and cloud-provider set of labels when comparing if two node groups are similar. |
@@ -33,6 +34,7 @@ A Helm chart for the Cluster Autoscaler.
 | node.caBundlePath | string | `"/etc/ssl/certs/ca-certificates.crt"` | Host path of the CA bundle. |
 | node.nodeSelector | object | `{"node-role.kubernetes.io/control-plane":""}` | Node selector for the autoscaler pod. `control-plane` gets translated to `master` and vice versa depending on Kubernetes version. |
 | provider | string | `"aws"` | Provider the cluster is running on. This value is set automatically. Do not overwrite it. |
+| proxy | object | `{"http":"","https":"","noProxy":""}` | Local proxy settings. Overrides global proxy settings. This value is set automatically. Do not overwrite it. |
 | registry.domain | string | `"gsoci.azurecr.io"` | Registry host to pull images from. This value is set automatically. Do not overwrite it. |
 | resources | object | `{"limits":{"memory":"400Mi"},"requests":{"cpu":"200m","memory":"400Mi"}}` | Container resource requests and limits. |
 | securityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"readOnlyRootFilesystem":true,"runAsGroup":1000,"runAsNonRoot":true,"runAsUser":1000,"seccompProfile":{"type":"RuntimeDefault"}}` | Container security context. |
