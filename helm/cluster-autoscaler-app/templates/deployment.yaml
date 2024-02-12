@@ -68,8 +68,10 @@ spec:
         {{- range $value := .Values.configmap.balancingIgnoreLabels }}
         - --balancing-ignore-label={{ $value }}
         {{- end }}
-        {{- if eq .Values.provider "azure" }}
+        {{- $_ := merge .Values.proxy .Values.cluster.proxy }}
+        {{- if or (eq .Values.provider "azure") (and .Values.proxy.http .Values.proxy.https .Values.proxy.noProxy) }}
         env:
+        {{- if eq .Values.provider "azure" }}
         {{- if and (not .Values.isManagementCluster) .Values.azure.subscriptionID }}
         - name: ARM_SUBSCRIPTION_ID
           value: {{ .Values.azure.subscriptionID }}
@@ -81,23 +83,20 @@ spec:
         - name: ARM_VM_TYPE
           value: {{ .Values.azure.vmType }}
         {{- end }}
-        {{- $proxy := deepCopy .Values.cluster.proxy |  mustMerge .Values.proxy }}
-        {{- if and $proxy.noProxy $proxy.http $proxy.https }}
-        {{- if ne .Values.provider "azure" }}
-        env:
-        {{- end }}
-        - name: NO_PROXY
-          value: {{ $proxy.noProxy }}
-        - name: no_proxy
-          value: {{ $proxy.noProxy }}
-        - name: HTTP_PROXY
-          value: {{ $proxy.http }}
+        {{- if and .Values.proxy.http .Values.proxy.https .Values.proxy.noProxy }}
         - name: http_proxy
-          value: {{ $proxy.http }}
-        - name: HTTPS_PROXY
-          value: {{ $proxy.https }}
+          value: {{ .Values.proxy.http }}
+        - name: HTTP_PROXY
+          value: {{ .Values.proxy.http }}
         - name: https_proxy
-          value: {{ $proxy.https }}
+          value: {{ .Values.proxy.https }}
+        - name: HTTPS_PROXY
+          value: {{ .Values.proxy.https }}
+        - name: no_proxy
+          value: {{ .Values.proxy.noProxy }}
+        - name: NO_PROXY
+          value: {{ .Values.proxy.noProxy }}
+        {{- end }}
         {{- end }}
         ports:
         - name: metrics
