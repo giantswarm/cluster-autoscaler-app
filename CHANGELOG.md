@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Add possibility to use egress proxy.
+
 ## [1.27.3-gs6] - 2024-02-05
 
 ### Added

@@ -112,6 +112,19 @@ registry:
   # This value is set automatically. Do not overwrite it.
   domain: gsoci.azurecr.io
 
+# set the HTTP_PROXY, HTTPS_PROXY and NO_PROXY variable
+proxy:
+  noProxy:
+  http:
+  https:
+cluster:
+  # is getting overwritten by the top level proxy if set
+  # These values are generated via cluster-apps-operator
+  proxy:
+    noProxy:
+    http:
+    https:
+
 global:
   podSecurityStandards:
     # -- If Pod Security Standards are being used or not.

@@ -32,6 +32,25 @@
                 }
             }
         },
+        "cluster": {
+            "type": "object",
+            "properties": {
+                "proxy": {
+                    "type": "object",
+                    "properties": {
+                        "http": {
+                            "type": ["string","null"]
+                        },
+                        "https": {
+                            "type": ["string","null"]
+                        },
+                        "noProxy": {
+                            "type": ["string","null"]
+                        }
+                    }
+                }
+            }
+        },
         "clusterID": {
             "type": "string"
         },
@@ -121,6 +140,20 @@
         },
         "provider": {
             "type": "string"
+        },
+        "proxy": {
+            "type": "object",
+            "properties": {
+                "http": {
+                    "type": ["string","null"]
+                },
+                "https": {
+                    "type": ["string","null"]
+                },
+                "noProxy": {
+                    "type": ["string","null"]
+                }
+            }
         },
         "registry": {
             "type": "object",
