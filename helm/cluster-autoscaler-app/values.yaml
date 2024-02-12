@@ -113,6 +113,21 @@ registry:
   # This value is set automatically. Do not overwrite it.
   domain: gsoci.azurecr.io
 
+cluster:
+  # -- Global proxy settings.
+  # This value is set automatically. Do not overwrite it.
+  proxy:
+    http: ""
+    https: ""
+    noProxy: ""
+
+# -- Local proxy settings. Overrides global proxy settings.
+# This value is set automatically. Do not overwrite it.
+proxy:
+  http: ""
+  https: ""
+  noProxy: ""
+
 global:
   podSecurityStandards:
     # -- If Pod Security Standards are being used or not.

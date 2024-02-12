@@ -7,6 +7,14 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Add possibility to use egress proxy.
+
+### Changed
+
+- Chart: Improve proxy settings. ([#249](https://github.com/giantswarm/cluster-autoscaler-app/pull/249))
+
 ## [1.25.3-gs1] - 2024-02-05
 
 ### Added

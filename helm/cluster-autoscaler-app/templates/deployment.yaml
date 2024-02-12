@@ -68,8 +68,10 @@ spec:
         {{- range $value := .Values.configmap.balancingIgnoreLabels }}
         - --balancing-ignore-label={{ $value }}
         {{- end }}
-        {{- if eq .Values.provider "azure" }}
+        {{- $_ := merge .Values.proxy .Values.cluster.proxy }}
+        {{- if or (eq .Values.provider "azure") (and .Values.proxy.http .Values.proxy.https .Values.proxy.noProxy) }}
         env:
+        {{- if eq .Values.provider "azure" }}
         {{- if and (not .Values.isManagementCluster) .Values.azure.subscriptionID }}
         - name: ARM_SUBSCRIPTION_ID
           value: {{ .Values.azure.subscriptionID }}
@@ -80,6 +82,21 @@ spec:
           value: {{ .Values.azure.managedIdentity | quote }}
         - name: ARM_VM_TYPE
           value: {{ .Values.azure.vmType }}
+        {{- end }}
+        {{- if and .Values.proxy.http .Values.proxy.https .Values.proxy.noProxy }}
+        - name: http_proxy
+          value: {{ .Values.proxy.http }}
+        - name: HTTP_PROXY
+          value: {{ .Values.proxy.http }}
+        - name: https_proxy
+          value: {{ .Values.proxy.https }}
+        - name: HTTPS_PROXY
+          value: {{ .Values.proxy.https }}
+        - name: no_proxy
+          value: {{ .Values.proxy.noProxy }}
+        - name: NO_PROXY
+          value: {{ .Values.proxy.noProxy }}
+        {{- end }}
         {{- end }}
         ports:
         - name: metrics
