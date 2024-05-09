@@ -71,8 +71,8 @@ azure:
 # -- Container resource requests and limits.
 resources:
   requests:
-    cpu: 200m
-    memory: 400Mi
+    cpu: 50m
+    memory: 100Mi
   limits:
     memory: 400Mi
 
@@ -87,8 +87,8 @@ node:
 autoscaling:
   # -- Lower bounds for vertical autoscaling.
   minAllowed:
-    cpu: 200m
-    memory: 400Mi
+    cpu: 50m
+    memory: 100Mi
 
 # Below are configuration values that you should not overwrite or set yourself.
 
