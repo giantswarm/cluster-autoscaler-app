@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.27.3-gs9] - 2024-05-20
+
 ### Changed
 
 - Reduce minimum CPU and memory requests.
@@ -374,7 +376,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs8...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs9...HEAD
+[1.27.3-gs9]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs8...v1.27.3-gs9
 [1.27.3-gs8]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs7...v1.27.3-gs8
 [1.27.3-gs7]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs6...v1.27.3-gs7
 [1.27.3-gs6]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs5...v1.27.3-gs6
