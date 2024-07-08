@@ -65,6 +65,9 @@ spec:
         - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
         - --scale-down-unneeded-time={{ .Values.configmap.scaleDownUnneededTime }}
         - --balance-similar-node-groups={{ .Values.configmap.balanceSimilarNodeGroups }}
+        {{- range $value := .Values.configmap.nodeStartupTaints }}
+        - --ignore-taint={{ $value }}
+        {{- end }}
         {{- range $value := .Values.configmap.balancingIgnoreLabels }}
         - --balancing-ignore-label={{ $value }}
         {{- end }}
