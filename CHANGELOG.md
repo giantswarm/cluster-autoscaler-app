@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.27.3-gs10] - 2024-07-08
+
 ### Changed
 
 - Add node startup taints. ([#274](https://github.com/giantswarm/cluster-autoscaler-app/pull/274)) 
@@ -380,7 +382,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs9...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs10...HEAD
+[1.27.3-gs10]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs9...v1.27.3-gs10
 [1.27.3-gs9]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs8...v1.27.3-gs9
 [1.27.3-gs8]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs7...v1.27.3-gs8
 [1.27.3-gs7]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs6...v1.27.3-gs7
