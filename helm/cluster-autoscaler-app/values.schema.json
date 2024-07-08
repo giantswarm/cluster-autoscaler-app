@@ -72,6 +72,12 @@
                 "newPodScaleUpDelay": {
                     "type": "string"
                 },
+                "nodeStartupTaints": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "scaleDownUnneededTime": {
                     "type": "string"
                 },

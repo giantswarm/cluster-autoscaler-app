@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Add node startup taints. ([#274](https://github.com/giantswarm/cluster-autoscaler-app/pull/274)) 
+
 ## [1.27.3-gs9] - 2024-05-20
 
 ### Changed

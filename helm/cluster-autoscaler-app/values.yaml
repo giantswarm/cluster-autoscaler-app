@@ -60,6 +60,12 @@ configmap:
   - vpc.amazonaws.com/eniConfig
   - giantswarm.io/machine-deployment
 
+  # -- Taints that are added to new nodes during node initialization.
+  # Cluster Autoscaler treats nodes tainted with startup taints as unready, but taken into account during scale up logic, assuming they will become ready shortly.
+  # See: https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-does-cluster-autoscaler-treat-nodes-with-statusstartupignore-taints
+  nodeStartupTaints:
+  - node.cluster.x-k8s.io/uninitialized
+
 azure:
   # -- ID of the subscription the VMSSs are contained in.
   subscriptionID: ""
