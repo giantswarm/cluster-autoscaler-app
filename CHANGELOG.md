@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Update `PolicyExceptions` apiVersion to `v2beta1`. ([#282](https://github.com/giantswarm/cluster-autoscaler-app/pull/282))
+
 ## [1.29.3-gs1] - 2024-07-17
 
 ### Changed
