@@ -7,9 +7,12 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.30.2] - 2024-08-29
+
 ### Changed
 
 - Update `PolicyExceptions` apiVersion to `v2beta1`. ([#282](https://github.com/giantswarm/cluster-autoscaler-app/pull/282))
+- Chart: Update to upstream v1.30.2. ([#283](https://github.com/giantswarm/cluster-autoscaler-app/pull/283))
 
 ## [1.29.3-gs1] - 2024-07-17
 
@@ -398,7 +401,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.29.3-gs1...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.30.2...HEAD
+[1.30.2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.29.3-gs1...v1.30.2
 [1.29.3-gs1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.28.5-gs1...v1.29.3-gs1
 [1.28.5-gs1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs10...v1.28.5-gs1
 [1.27.3-gs10]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs9...v1.27.3-gs10
