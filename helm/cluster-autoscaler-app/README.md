@@ -1,6 +1,6 @@
 # cluster-autoscaler-app
 
-![Version: 1.29.3-gs1](https://img.shields.io/badge/Version-1.29.3--gs1-informational?style=flat-square) ![AppVersion: 1.29.3](https://img.shields.io/badge/AppVersion-1.29.3-informational?style=flat-square)
+![Version: 1.30.2-gs1](https://img.shields.io/badge/Version-1.30.2--gs1-informational?style=flat-square) ![AppVersion: 1.30.2](https://img.shields.io/badge/AppVersion-1.30.2-informational?style=flat-square)
 
 A Helm chart for the Cluster Autoscaler.
 
@@ -29,7 +29,7 @@ A Helm chart for the Cluster Autoscaler.
 | global.podSecurityStandards.enforced | bool | `false` | If Pod Security Standards are being used or not. This value is set automatically. Do not overwrite it. |
 | image.name | string | `"giantswarm/cluster-autoscaler"` | Image name. |
 | image.registry | string | `"gsoci.azurecr.io"` | Registry host to pull images from. This value is set automatically. Do not overwrite it. |
-| image.tag | string | `"v1.29.3"` | Image tag. |
+| image.tag | string | `"v1.30.2"` | Image tag. |
 | isManagementCluster | bool | `false` | If the chart is installed on a management cluster or not. This value is set automatically. Do not overwrite it. |
 | managementCluster | string | `"sc4l3"` | Name of the management cluster this chart is installed on. This value is set automatically. Do not overwrite it. |
 | node.caBundlePath | string | `"/etc/ssl/certs/ca-certificates.crt"` | Host path of the CA bundle. |
