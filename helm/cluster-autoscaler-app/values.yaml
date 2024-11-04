@@ -9,7 +9,7 @@ image:
   # -- Image name.
   name: giantswarm/cluster-autoscaler
   # -- Image tag.
-  tag: v1.30.2
+  tag: v1.30.3
 
 # -- Container security context.
 securityContext:
