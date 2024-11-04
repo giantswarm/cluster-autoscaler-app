@@ -26,7 +26,7 @@ A Helm chart for the Cluster Autoscaler.
 | configmap.scanInterval | string | `"30s"` | How often cluster is reevaluated for scale up or down. |
 | configmap.skipNodesWithLocalStorage | string | `"false"` | If true cluster autoscaler will never delete nodes with pods with local storage, e.g. EmptyDir or HostPath. |
 | configmap.skipNodesWithSystemPods | string | `"true"` | If true cluster autoscaler will never delete nodes with pods from kube-system (except for DaemonSet or mirror pods). |
-| global.podSecurityStandards.enforced | bool | `false` | If Pod Security Standards are being used or not. This value is set automatically. Do not overwrite it. |
+| global.podSecurityStandards.enforced | bool | `true` | If Pod Security Standards are being used or not. This value is set automatically. Do not overwrite it. |
 | image.name | string | `"giantswarm/cluster-autoscaler"` | Image name. |
 | image.registry | string | `"gsoci.azurecr.io"` | Registry host to pull images from. This value is set automatically. Do not overwrite it. |
 | image.tag | string | `"v1.30.2"` | Image tag. |

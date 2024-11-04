@@ -137,4 +137,4 @@ global:
   podSecurityStandards:
     # -- If Pod Security Standards are being used or not.
     # This value is set automatically. Do not overwrite it.
-    enforced: false
+    enforced: true
