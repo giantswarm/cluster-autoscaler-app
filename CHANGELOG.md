@@ -7,6 +7,8 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+## [1.30.2-gs2] - 2024-11-04
+
 ### Changed
 
 - Values: Enable Pod Security Standards. ([#296](https://github.com/giantswarm/cluster-autoscaler-app/pull/296))
@@ -405,7 +407,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.30.2-gs1...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.30.2-gs2...HEAD
+[1.30.2-gs2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.30.2-gs1...v1.30.2-gs2
 [1.30.2-gs1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.29.3-gs1...v1.30.2-gs1
 [1.29.3-gs1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.28.5-gs1...v1.29.3-gs1
 [1.28.5-gs1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.27.3-gs10...v1.28.5-gs1
