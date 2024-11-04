@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Values: Enable Pod Security Standards. ([#296](https://github.com/giantswarm/cluster-autoscaler-app/pull/296))
+
 ## [1.30.2-gs1] - 2024-09-02
 
 ### Changed
