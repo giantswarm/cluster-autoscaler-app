@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Support adding additional labels to the `PodMonitor` resource via the `podMonitor.additionalLabels` value.
+
 ## [1.30.4-gs1] - 2025-03-17
 
 ### Changed
@@ -39,13 +43,13 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ### Changed
 
-- Update to upstream 1.28.5. ([#276](https://github.com/giantswarm/cluster-autoscaler-app/pull/276)) 
+- Update to upstream 1.28.5. ([#276](https://github.com/giantswarm/cluster-autoscaler-app/pull/276))
 
 ## [1.27.3-gs10] - 2024-07-08
 
 ### Changed
 
-- Add node startup taints. ([#274](https://github.com/giantswarm/cluster-autoscaler-app/pull/274)) 
+- Add node startup taints. ([#274](https://github.com/giantswarm/cluster-autoscaler-app/pull/274))
 
 ## [1.27.3-gs9] - 2024-05-20
 

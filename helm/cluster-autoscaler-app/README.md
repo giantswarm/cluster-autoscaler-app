@@ -34,6 +34,7 @@ A Helm chart for the Cluster Autoscaler.
 | managementCluster | string | `"sc4l3"` | Name of the management cluster this chart is installed on. This value is set automatically. Do not overwrite it. |
 | node.caBundlePath | string | `"/etc/ssl/certs/ca-certificates.crt"` | Host path of the CA bundle. |
 | node.nodeSelector | object | `{"node-role.kubernetes.io/control-plane":""}` | Node selector for the autoscaler pod. `control-plane` gets translated to `master` and vice versa depending on Kubernetes version. |
+| podMonitor.additionalLabels | object | `{}` | Add extra labels to the PodMonitor resource |
 | provider | string | `"aws"` | Provider the cluster is running on. This value is set automatically. Do not overwrite it. |
 | proxy | object | `{"http":"","https":"","noProxy":""}` | Local proxy settings. Overrides global proxy settings. This value is set automatically. Do not overwrite it. |
 | registry.domain | string | `"gsoci.azurecr.io"` | Registry host to pull images from. This value is set automatically. Do not overwrite it. |
