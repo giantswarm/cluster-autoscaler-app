@@ -144,6 +144,14 @@
                 }
             }
         },
+        "podMonitor": {
+            "type": "object",
+            "properties": {
+                "additionalLabels": {
+                    "type": "object"
+                }
+            }
+        },
         "provider": {
             "type": "string"
         },
