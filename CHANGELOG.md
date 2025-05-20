@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Added
+
+- Add additional labels to ignore during ASG balancing check
+
 ## [1.30.4-gs2] - 2025-03-28
 
 ### Added
