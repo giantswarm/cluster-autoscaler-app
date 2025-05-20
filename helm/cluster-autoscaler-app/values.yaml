@@ -59,6 +59,9 @@ configmap:
   - ip
   - vpc.amazonaws.com/eniConfig
   - giantswarm.io/machine-deployment
+  - giantswarm.io/machine-pool
+  - topology.ebs.csi.aws.com/zone
+  - topology.k8s.aws/zone-id
 
   # -- Taints that are added to new nodes during node initialization.
   # Cluster Autoscaler treats nodes tainted with startup taints as unready, but taken into account during scale up logic, assuming they will become ready shortly.
