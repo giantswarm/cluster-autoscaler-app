@@ -11,6 +11,11 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Add additional labels to ignore during ASG balancing check
 
+### Changed
+
+- Chart: Update to upstream v1.31.2. ([#322](https://github.com/giantswarm/cluster-autoscaler-app/pull/322))
+
+
 ## [1.30.4-gs2] - 2025-03-28
 
 ### Added
