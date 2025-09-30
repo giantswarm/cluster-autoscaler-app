@@ -9,10 +9,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [1.33.1-1] - 2025-09-30
 
-
 ### Changed
 
 - Update Kyverno API to v2 for policy exceptions
+- Chart: Update to upstream v1.33.1.
 
 ## [1.32.2-gs1] - 2025-08-27
 
