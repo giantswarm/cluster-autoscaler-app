@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Chart: Grant access to `VolumeAttachments`. ([#345](https://github.com/giantswarm/cluster-autoscaler-app/pull/345))
+
 ## [1.33.1-1] - 2025-09-30
 
 ### Changed
