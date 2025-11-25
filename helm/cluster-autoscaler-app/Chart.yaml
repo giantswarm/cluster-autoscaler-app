@@ -1,8 +1,8 @@
 apiVersion: v2
 name: cluster-autoscaler-app
 description: A Helm chart for the Cluster Autoscaler.
-version: 1.33.1-2
-appVersion: 1.33.1
+version: 1.34.1-1
+appVersion: 1.34.1
 home: https://github.com/giantswarm/cluster-autoscaler-app
 icon: https://s.giantswarm.io/app-icons/k8s-initiator/1/dark.svg
 annotations:
