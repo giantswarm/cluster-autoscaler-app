@@ -3,8 +3,17 @@ version: 2.1
 orbs:
   architect: giantswarm/architect@6.8.0
 
+job_filters: &job_filters
+  filters:
+    tags:
+      only: /^v[0-9]+\.[0-9]+\.[0-9]+-[0-9]+$/
+    branches:
+      ignore:
+        - main
+        - master
+
 workflows:
-  build:
+  package-and-push-chart-on-tag:
     jobs:
       - architect/push-to-app-catalog:
           name: push-to-default-catalog
@@ -14,13 +23,7 @@ workflows:
           app_catalog: default-catalog
           app_catalog_test: default-test-catalog
           persist_chart_archive: true
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore:
-                - main
-                - master
+          <<: *job_filters
 
       - architect/push-to-app-catalog:
           name: push-to-control-plane-catalog
@@ -29,13 +32,27 @@ workflows:
           chart: cluster-autoscaler-app
           app_catalog: control-plane-catalog
           app_catalog_test: control-plane-test-catalog
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore:
-                - main
-                - master
+          <<: *job_filters
+
+      - architect/push-to-app-catalog:
+          context: architect
+          executor: app-build-suite
+          name: push cluster-autoscaler-app-bundle to default catalog
+          app_catalog: default-catalog
+          app_catalog_test: default-test-catalog
+          chart: cluster-autoscaler-app-bundle
+          explicit_allow_chart_name_mismatch: true
+          <<: *job_filters
+
+      - architect/push-to-app-catalog:
+          context: architect
+          executor: app-build-suite
+          name: push cluster-autoscaler-app-bundle to control-plane catalog
+          app_catalog: control-plane-catalog
+          app_catalog_test: control-plane-test-catalog
+          chart: cluster-autoscaler-app-bundle
+          explicit_allow_chart_name_mismatch: true
+          <<: *job_filters
 
       - architect/run-tests-with-ats:
           name: run-tests-with-ats

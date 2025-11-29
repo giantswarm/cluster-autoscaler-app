@@ -1,0 +1,53 @@
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: Role
+metadata:
+  name: {{ .Values.clusterID }}-cluster-autoscaler-role
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "cluster-autoscaler-app-bundle.labels" . | nindent 4 }}
+spec:
+  providerConfigRef:
+    name: {{ .Values.clusterID }}
+  forProvider:
+    tags:
+      giantswarm.io/cluster: {{ .Values.clusterID }}
+      sigs.k8s.io/cluster-api-provider-aws/cluster/{{ .Values.clusterID }}: owned
+    assumeRolePolicy: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {{- include "cluster-autoscaler-app-bundle.trustPolicyStatements" . | nindent 10 }}
+        ]
+      }
+    inlinePolicy:
+      - name: cluster-autoscaler-policy
+        policy: |
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "autoscaling:DescribeAutoScalingGroups",
+                  "autoscaling:DescribeAutoScalingInstances",
+                  "autoscaling:DescribeLaunchConfigurations",
+                  "autoscaling:DescribeScalingActivities",
+                  "autoscaling:DescribeTags",
+                  "ec2:DescribeInstanceTypes",
+                  "ec2:DescribeLaunchTemplateVersions"
+                ],
+                "Resource": "*"
+              },
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "autoscaling:SetDesiredCapacity",
+                  "autoscaling:TerminateInstanceInAutoScalingGroup",
+                  "ec2:DescribeImages",
+                  "ec2:GetInstanceTypesFromInstanceRequirements",
+                  "eks:DescribeNodegroup"
+                ],
+                "Resource": "*"
+              }
+            ]
+          }
