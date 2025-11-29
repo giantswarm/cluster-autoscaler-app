@@ -7,22 +7,9 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
-### Added
-
-- Introduce bundle chart architecture with Crossplane IAM resources.
-  - Add `cluster-autoscaler-app-bundle` chart that includes:
-    - Crossplane IAM Role with Cluster Autoscaler permissions
-    - Flux HelmRelease to deploy the workload cluster chart
-    - ConfigMap for values passthrough
-  - Bundle chart is installed on the management cluster and deploys the app chart to the workload cluster
-  - IAM role uses OIDC federation (IRSA) and reads configuration from `<clusterID>-crossplane-config` ConfigMap
-  - Both charts share the same version and are released together
-
 ### Changed
 
-- Update CircleCI configuration to push both app and bundle charts to default and control-plane catalogs
-- Update README with bundle architecture documentation
-- Add IAM role annotation to service account
+- Merge both the bundle and app chart into the same repository. Now the cluster-autoscaler app and the bundle containing the necessary IAM resources (managed by Crossplane) will live in this repository.
 
 ## [1.34.1-1] - 2025-11-25
 

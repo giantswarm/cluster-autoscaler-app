@@ -1,7 +1,7 @@
 apiVersion: iam.aws.upbound.io/v1beta1
 kind: Role
 metadata:
-  name: {{ .Values.clusterID }}-cluster-autoscaler-role
+  name: {{ .Values.clusterID }}-cluster-autoscaler
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "cluster-autoscaler-app-bundle.labels" . | nindent 4 }}
@@ -12,6 +12,7 @@ spec:
     tags:
       giantswarm.io/cluster: {{ .Values.clusterID }}
       sigs.k8s.io/cluster-api-provider-aws/cluster/{{ .Values.clusterID }}: owned
+      giantswarm.io/managed-by: {{ include "cluster-autoscaler-app-bundle.fullname" . }}
     assumeRolePolicy: |
       {
         "Version": "2012-10-17",
@@ -33,6 +34,8 @@ spec:
                   "autoscaling:DescribeLaunchConfigurations",
                   "autoscaling:DescribeScalingActivities",
                   "autoscaling:DescribeTags",
+                  "autoscaling:SetDesiredCapacity",
+                  "autoscaling:TerminateInstanceInAutoScalingGroup",
                   "ec2:DescribeInstanceTypes",
                   "ec2:DescribeLaunchTemplateVersions"
                 ],

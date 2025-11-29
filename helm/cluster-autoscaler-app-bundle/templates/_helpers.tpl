@@ -65,7 +65,7 @@ Get trust policy statements for all provided OIDC domains
   "Action": "sts:AssumeRoleWithWebIdentity",
   "Condition": {
     "StringEquals": {
-      "{{ $oidcDomain }}:sub": "system:serviceaccount:kube-system:{{ $.Release.Name | trimSuffix \"-app\" }}"
+      "{{ $oidcDomain }}:sub": "system:serviceaccount:kube-system:{{ include "cluster-autoscaler-app-bundle.fullname" . }}"
     }
   }
 }

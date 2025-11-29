@@ -1,5 +1,4 @@
 # Bundle-specific values
-clusterID: ""
 bundleNameOverride: ""
 fullBundleNameOverride: ""
 ociRepositoryUrl: oci://gsoci.azurecr.io/charts/giantswarm/cluster-autoscaler-app
