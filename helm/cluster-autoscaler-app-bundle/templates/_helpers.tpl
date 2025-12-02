@@ -7,6 +7,13 @@ Expand the name of the chart.
 {{- end -}}
 
 {{/*
+Name of the HelmRelease for the cluster-autoscaler-app.
+*/}}
+{{- define "cluster-autoscaler-app-bundle.helmReleaseName" -}}
+{{ .Values.clusterID }}-cluster-autoscaler-app
+{{- end -}}
+
+{{/*
 Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
@@ -65,7 +72,7 @@ Get trust policy statements for all provided OIDC domains
   "Action": "sts:AssumeRoleWithWebIdentity",
   "Condition": {
     "StringEquals": {
-      "{{ $oidcDomain }}:sub": "system:serviceaccount:kube-system:{{ include "cluster-autoscaler-app-bundle.fullname" . }}"
+      "{{ $oidcDomain }}:sub": "system:serviceaccount:kube-system:{{ include "cluster-autoscaler-app-bundle.helmReleaseName" $ }}"
     }
   }
 }
