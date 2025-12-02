@@ -14,7 +14,7 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: {{ include "cluster-autoscaler-app-bundle.helmReleaseName" }}
+  name: {{ include "cluster-autoscaler-app-bundle.helmReleaseName" . }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "cluster-autoscaler-app-bundle.labels" . | nindent 4 }}
@@ -36,7 +36,7 @@ spec:
     kind: OCIRepository
     name: {{ .Values.clusterID }}-cluster-autoscaler-app
     namespace: {{ .Release.Namespace }}
-  releaseName: {{ include "cluster-autoscaler-app-bundle.helmReleaseName" }}
+  releaseName: {{ include "cluster-autoscaler-app-bundle.helmReleaseName" . }}
   targetNamespace: kube-system
   storageNamespace: kube-system
   valuesFrom:
