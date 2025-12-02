@@ -1,3 +1,4 @@
+{{- if eq .Values.provider "capa" }}
 apiVersion: iam.aws.upbound.io/v1beta1
 kind: Role
 metadata:
@@ -54,3 +55,4 @@ spec:
               }
             ]
           }
+{{- end }}
