@@ -9,5 +9,5 @@ kubeVersion: ">=1.17.0-0"
 sources:
   - https://github.com/giantswarm/cluster-autoscaler-app
 annotations:
-  application.giantswarm.io/team: turtles
+  application.giantswarm.io/team: tenet
   ui.giantswarm.io/logo: https://s.giantswarm.io/app-icons/k8s-initiator/1/dark.svg
