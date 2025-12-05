@@ -7,6 +7,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [Unreleased]
 
+### Changed
+
+- Merge both the bundle and app chart into the same repository. Now the cluster-autoscaler app and the bundle containing the necessary IAM resources (managed by Crossplane) will live in this repository.
+
 ## [1.34.1-1] - 2025-11-25
 
 ### Changed
