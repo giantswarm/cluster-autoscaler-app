@@ -9,6 +9,10 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [1.34.3-1] - 2026-02-18
 
+### Changed
+
+- Chart: Update to upstream v1.34.3.
+
 ## [1.34.2-1] - 2026-02-05
 
 ### Changed
