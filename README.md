@@ -1,4 +1,5 @@
-[![CircleCI](https://circleci.com/gh/giantswarm/cluster-autoscaler-app.svg?style=shield)](https://circleci.com/gh/giantswarm/cluster-autoscaler-app)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/giantswarm/cluster-autoscaler-app/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giantswarm/cluster-autoscaler-app/tree/main)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/giantswarm/cluster-autoscaler-app/badge)](https://securityscorecards.dev/viewer/?uri=github.com/giantswarm/cluster-autoscaler-app)
 
 # Cluster Autoscaler
 
