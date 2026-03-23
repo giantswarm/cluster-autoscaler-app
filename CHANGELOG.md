@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Deploy the Kyverno policy exception in the `policy-exceptions` Namespace.
+- Deploy the Kyverno PolicyException as a Helm `pre-install,pre-upgrade` hook so it takes effect before chart resources are created.
 
 ## [1.34.3-1] - 2026-02-18
 

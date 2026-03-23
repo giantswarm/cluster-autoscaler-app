@@ -6,6 +6,8 @@ metadata:
   namespace: policy-exceptions
   labels:
     {{- include "cluster-autoscaler.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
 spec:
   match:
     any:
