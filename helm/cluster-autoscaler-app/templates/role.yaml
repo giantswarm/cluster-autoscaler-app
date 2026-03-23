@@ -66,4 +66,3 @@ rules:
     - get
     - update
 {{- end }}
-{{- end }}
