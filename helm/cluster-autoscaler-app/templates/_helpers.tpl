@@ -44,11 +44,34 @@ app: {{ include "cluster-autoscaler.fullname" . }}
 Support cloud provider aliases.
 */}}
 {{- define "cloud-provider" -}}
-{{- if eq .Values.provider "gcp" -}}
+{{- if .Values.clusterAPI.enabled -}}
+clusterapi
+{{- else if eq .Values.provider "gcp" -}}
 gce
 {{- else if eq .Values.provider "capa" -}}
 aws
 {{- else -}}
 {{ .Values.provider }}
 {{- end -}}
+{{- end -}}
+
+{{/*
+Returns the cluster name. For management clusters, it uses the managementCluster value. For workload clusters, it uses the clusterID value.
+*/}}
+{{- define "cluster-name" -}}
+{{- .Values.isManagementCluster | ternary .Values.managementCluster .Values.clusterID }}
+{{- end -}}
+
+{{/*
+Build CAPI autodiscovery configuration string.
+Combines clusterName, namespace, and labels into comma-separated key=value pairs.
+*/}}
+{{- define "cluster-autoscaler.capiAutodiscoveryConfig" -}}
+{{- $parts := list -}}
+{{- $parts = append $parts (printf "clusterName=%s" (include "cluster-name" .)) -}}
+{{- $parts = append $parts (printf "namespace=%s" (.Values.clusterAPI.autoDiscovery.namespace | default .Release.Namespace)) -}}
+{{- range .Values.clusterAPI.autoDiscovery.labels -}}
+{{- $parts = append $parts (printf "%s=%s" .key .value) -}}
+{{- end -}}
+{{- join "," $parts -}}
 {{- end -}}

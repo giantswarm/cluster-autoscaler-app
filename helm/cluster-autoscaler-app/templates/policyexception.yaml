@@ -3,7 +3,7 @@ apiVersion: kyverno.io/v2
 kind: PolicyException
 metadata:
   name: {{ include "cluster-autoscaler.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: policy-exceptions
   labels:
     {{- include "cluster-autoscaler.labels" . | nindent 4 }}
 spec:

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add support for CAPI mode (`kubeconfig-incluster`): run cluster-autoscaler on the management cluster using a pre-existing kubeconfig to connect to the workload cluster.
+- Add `clusterAPI` values section for configuring CAPI mode (autodiscovery, kubeconfig secret, configmaps namespace).
+- Add `rbac.clusterScoped` toggle to support namespace-scoped RBAC (no ClusterRole/ClusterRoleBinding) for CAPI deployments.
+
+### Changed
+
+- Deploy the Kyverno policy exception in the `policy-exceptions` Namespace.
+
 ## [1.34.3-1] - 2026-02-18
 
 ### Changed
