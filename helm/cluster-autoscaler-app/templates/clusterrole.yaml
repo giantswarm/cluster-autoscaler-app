@@ -146,4 +146,27 @@ rules:
   verbs:
   - use
 {{- end }}
+{{- if .Values.clusterAPI.enabled }}
+- apiGroups:
+  - cluster.x-k8s.io
+  resources:
+  - machinedeployments
+  - machinepools
+  - machines
+  - machinesets
+  verbs:
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - cluster.x-k8s.io
+  resources:
+  - machinedeployments/scale
+  - machinepools/scale
+  verbs:
+  - get
+  - patch
+  - update
+{{- end }}
 {{- end }}
