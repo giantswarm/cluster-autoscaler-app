@@ -125,7 +125,7 @@ spec:
           readOnly: true
         {{- if and .Values.clusterAPI.enabled .Values.clusterAPI.kubeconfigSecret }}
         - name: cluster-api-kubeconfig
-          mountPath: /etc/kubernetes/value
+          mountPath: /etc/kubernetes
           readOnly: true
         {{- end }}
       volumes:
