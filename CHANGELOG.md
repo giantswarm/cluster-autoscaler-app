@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Migrate test infrastructure from pipenv to uv.
 - Deploy the Kyverno policy exception in the `policy-exceptions` Namespace.
 - Deploy the Kyverno PolicyException as a Helm `pre-install,pre-upgrade` hook so it takes effect before chart resources are created.
 
