@@ -43,3 +43,4 @@ workflows:
           branches:
             ignore:
             - main
+        app-test-suite_version: "v0.14.0"
