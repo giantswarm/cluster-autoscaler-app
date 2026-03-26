@@ -44,4 +44,4 @@ workflows:
             ignore:
             - main
         app-test-suite_version: "v0.14.0"
-        app-test-suite_container_tag: "v0.14.0"
+        app-test-suite_container_tag: "0.14.0"
