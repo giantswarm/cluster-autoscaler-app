@@ -21,7 +21,7 @@ securityContext:
     type: RuntimeDefault
   capabilities:
     drop:
-    - ALL
+      - ALL
   readOnlyRootFilesystem: true
 
 configmap:
@@ -56,18 +56,18 @@ configmap:
   balanceSimilarNodeGroups: "true"
   # -- Specifies a label to ignore in addition to the basic and cloud-provider set of labels when comparing if two node groups are similar.
   balancingIgnoreLabels:
-  - ip
-  - vpc.amazonaws.com/eniConfig
-  - giantswarm.io/machine-deployment
-  - giantswarm.io/machine-pool
-  - topology.ebs.csi.aws.com/zone
-  - topology.k8s.aws/zone-id
+    - ip
+    - vpc.amazonaws.com/eniConfig
+    - giantswarm.io/machine-deployment
+    - giantswarm.io/machine-pool
+    - topology.ebs.csi.aws.com/zone
+    - topology.k8s.aws/zone-id
 
   # -- Taints that are added to new nodes during node initialization.
   # Cluster Autoscaler treats nodes tainted with startup taints as unready, but taken into account during scale up logic, assuming they will become ready shortly.
   # See: https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md#how-does-cluster-autoscaler-treat-nodes-with-statusstartupignore-taints
   nodeStartupTaints:
-  - node.cluster.x-k8s.io/uninitialized
+    - node.cluster.x-k8s.io/uninitialized
 
 azure:
   # -- ID of the subscription the VMSSs are contained in.
@@ -139,6 +139,27 @@ proxy:
   http: ""
   https: ""
   noProxy: ""
+
+clusterAPI:
+  # -- Enable CAPI mode (kubeconfig-incluster).
+  # When enabled, cluster-autoscaler runs on the management cluster,
+  # accesses CAPI resources in-cluster, and connects to the workload
+  # cluster via a pre-existing kubeconfig secret.
+  enabled: false
+  # -- Name of an existing Secret containing the workload cluster kubeconfig.
+  kubeconfigSecret: ""
+  # -- Namespace for leader-election/status configmaps on the workload cluster.
+  configMapsNamespace: "kube-system"
+  autoDiscovery:
+    # -- Namespace filter for CAPI autodiscovery. Defaults to the Release namespace if not set.
+    namespace: ""
+    # -- Label filters for CAPI autodiscovery (list of {key: "", value: ""} maps).
+    labels: []
+
+rbac:
+  # -- When true (default), creates ClusterRole and ClusterRoleBinding.
+  # When false, uses namespace-scoped Role only (useful for CAPI mode).
+  clusterScoped: true
 
 global:
   podSecurityStandards:

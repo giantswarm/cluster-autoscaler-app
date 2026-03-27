@@ -51,6 +51,45 @@
                 }
             }
         },
+        "clusterAPI": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "kubeconfigSecret": {
+                    "type": "string"
+                },
+                "configMapsNamespace": {
+                    "type": "string"
+                },
+                "autoDiscovery": {
+                    "type": "object",
+                    "properties": {
+                        "clusterName": {
+                            "type": "string"
+                        },
+                        "namespace": {
+                            "type": "string"
+                        },
+                        "labels": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "key": {
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "clusterID": {
             "type": "string"
         },
@@ -154,6 +193,14 @@
         },
         "provider": {
             "type": "string"
+        },
+        "rbac": {
+            "type": "object",
+            "properties": {
+                "clusterScoped": {
+                    "type": "boolean"
+                }
+            }
         },
         "proxy": {
             "type": "object",

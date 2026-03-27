@@ -15,6 +15,7 @@ spec:
         {{- include "cluster-autoscaler.labels" . | nindent 8 }}
     spec:
       serviceAccountName: {{ include "cluster-autoscaler.fullname" . }}
+      {{- if not .Values.clusterAPI.enabled }}
       tolerations:
       - key: node-role.kubernetes.io/control-plane
         operator: Exists
@@ -22,7 +23,9 @@ spec:
       - key: node-role.kubernetes.io/master
         operator: Exists
         effect: NoSchedule
+      {{- end }}
       {{- with .Values.node.nodeSelector }}
+      {{- if not $.Values.clusterAPI.enabled }}
       {{- if and (semverCompare ">=1.24.0" $.Capabilities.KubeVersion.Version) (hasKey . "node-role.kubernetes.io/master") }}
       {{- $value := get . "node-role.kubernetes.io/master" }}
       {{- $_ := unset . "node-role.kubernetes.io/master" }}
@@ -35,10 +38,11 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- end }}
       priorityClassName: giantswarm-critical
       containers:
       {{- $registry := .Values.isManagementCluster | ternary .Values.registry.domain .Values.image.registry }}
-      {{- $cluster := .Values.isManagementCluster | ternary .Values.managementCluster .Values.clusterID }}
+      {{- $cluster := include "cluster-name" . }}
       - name: cluster-autoscaler
         image: {{ $registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
         securityContext:
@@ -51,7 +55,15 @@ spec:
         - --stderrthreshold=info
         - --expander={{ .Values.configmap.expander }}
         - --cloud-provider={{ include "cloud-provider" . }}
-        {{- if eq .Values.provider "aws" }}
+        {{- if .Values.clusterAPI.enabled }}
+        {{- $capiConfig := include "cluster-autoscaler.capiAutodiscoveryConfig" . }}
+        {{- if $capiConfig }}
+        - --node-group-auto-discovery=clusterapi:{{ $capiConfig }}
+        {{- end }}
+        - --kubeconfig=/etc/kubernetes/value
+        - --clusterapi-cloud-config-authoritative
+        - --namespace={{ .Values.clusterAPI.configMapsNamespace | default "kube-system" }}
+        {{- else if eq .Values.provider "aws" }}
         - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ $cluster }}
         {{- else if eq .Values.provider "capa" }}
         - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,sigs.k8s.io/cluster-api-provider-aws/cluster/{{ $cluster }}
@@ -111,7 +123,17 @@ spec:
         - name: ssl-certs
           mountPath: /etc/ssl/certs/ca-certificates.crt
           readOnly: true
+        {{- if and .Values.clusterAPI.enabled .Values.clusterAPI.kubeconfigSecret }}
+        - name: cluster-api-kubeconfig
+          mountPath: /etc/kubernetes
+          readOnly: true
+        {{- end }}
       volumes:
       - name: ssl-certs
         hostPath:
           path: {{ .Values.node.caBundlePath }}
+      {{- if and .Values.clusterAPI.enabled .Values.clusterAPI.kubeconfigSecret }}
+      - name: cluster-api-kubeconfig
+        secret:
+          secretName: {{ .Values.clusterAPI.kubeconfigSecret }}
+      {{- end }}

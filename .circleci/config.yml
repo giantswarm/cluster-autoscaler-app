@@ -43,3 +43,6 @@ workflows:
           branches:
             ignore:
             - main
+        # Drop the version constrains after app-test-suite v0.14.0 is updated in architect-orb.
+        app-test-suite_version: "v0.14.0"
+        app-test-suite_container_tag: "0.14.0"
