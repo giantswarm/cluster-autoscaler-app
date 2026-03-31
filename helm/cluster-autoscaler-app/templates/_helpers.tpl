@@ -59,7 +59,11 @@ aws
 Returns the cluster name. For management clusters, it uses the managementCluster value. For workload clusters, it uses the clusterID value.
 */}}
 {{- define "cluster-name" -}}
-{{- .Values.isManagementCluster | ternary .Values.managementCluster .Values.clusterID }}
+{{- if .Values.isManagementCluster -}}
+{{- required ".Values.managementCluster is required when .Values.isManagementCluster is true" .Values.managementCluster -}}
+{{- else -}}
+{{- required ".Values.clusterID is required when .Values.isManagementCluster is false" .Values.clusterID -}}
+{{- end -}}
 {{- end -}}
 
 {{/*

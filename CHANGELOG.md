@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Validate that `managementCluster` (when `isManagementCluster=true`) or `clusterID` (otherwise) are set, failing early with a clear error message.
 - Add support for CAPI mode (`kubeconfig-incluster`): run cluster-autoscaler on the management cluster using a pre-existing kubeconfig to connect to the workload cluster.
 - Add `clusterAPI` values section for configuring CAPI mode (autodiscovery, kubeconfig secret, configmaps namespace).
 - Add `rbac.clusterScoped` toggle to support namespace-scoped RBAC (no ClusterRole/ClusterRoleBinding) for CAPI deployments.
