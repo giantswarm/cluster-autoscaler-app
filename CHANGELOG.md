@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.34.3-2] - 2026-03-31
+
 ### Added
 
 - Validate that `managementCluster` (when `isManagementCluster=true`) or `clusterID` (otherwise) are set, failing early with a clear error message.
@@ -494,7 +496,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.34.3-1...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.34.3-2...HEAD
+[1.34.3-2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.34.3-1...v1.34.3-2
 [1.34.3-1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.34.2-1...v1.34.3-1
 [1.34.2-1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.34.1-1...v1.34.2-1
 [1.34.1-1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v1.33.1-2...v1.34.1-1
