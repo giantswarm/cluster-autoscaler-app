@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Update `architect-orb`
+
 ## [1.34.3-2] - 2026-03-31
 
 ### Added
