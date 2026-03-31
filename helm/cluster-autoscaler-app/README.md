@@ -1,6 +1,6 @@
 # cluster-autoscaler-app
 
-![Version: 1.34.3-1](https://img.shields.io/badge/Version-1.34.3--1-informational?style=flat-square) ![AppVersion: 1.34.3](https://img.shields.io/badge/AppVersion-1.34.3-informational?style=flat-square)
+![Version: 1.34.3-2](https://img.shields.io/badge/Version-1.34.3--2-informational?style=flat-square) ![AppVersion: 1.34.3](https://img.shields.io/badge/AppVersion-1.34.3-informational?style=flat-square)
 
 A Helm chart for the Cluster Autoscaler.
 
