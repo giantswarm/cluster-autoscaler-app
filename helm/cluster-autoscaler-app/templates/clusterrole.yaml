@@ -1,3 +1,4 @@
+{{- if .Values.rbac.clusterScoped }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -144,4 +145,28 @@ rules:
   - {{ include "cluster-autoscaler.fullname" . }}
   verbs:
   - use
+{{- end }}
+{{- if .Values.clusterAPI.enabled }}
+- apiGroups:
+  - cluster.x-k8s.io
+  resources:
+  - machinedeployments
+  - machinepools
+  - machines
+  - machinesets
+  verbs:
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - cluster.x-k8s.io
+  resources:
+  - machinedeployments/scale
+  - machinepools/scale
+  verbs:
+  - get
+  - patch
+  - update
+{{- end }}
 {{- end }}

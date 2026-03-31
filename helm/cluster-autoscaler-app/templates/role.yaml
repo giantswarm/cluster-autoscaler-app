@@ -26,3 +26,43 @@ rules:
   - get
   - update
   - watch
+{{- if and .Values.clusterAPI.enabled ( not .Values.rbac.clusterScoped ) }}
+- apiGroups:
+  - cluster.x-k8s.io
+  resources:
+  - machinedeployments
+  - machinepools
+  - machines
+  - machinesets
+  verbs:
+  - get
+  - list
+  - update
+  - watch
+- apiGroups:
+  - cluster.x-k8s.io
+  resources:
+  - machinedeployments/scale
+  - machinepools/scale
+  verbs:
+  - get
+  - patch
+  - update
+{{- end }}
+{{- if ( not .Values.rbac.clusterScoped ) }}
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - create
+- apiGroups:
+  - coordination.k8s.io
+  resourceNames:
+  - cluster-autoscaler
+  resources:
+  - leases
+  verbs:
+  - get
+  - update
+{{- end }}
