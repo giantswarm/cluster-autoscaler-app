@@ -1,6 +1,6 @@
 # cluster-autoscaler-app
 
-![Version: 1.34.3-2](https://img.shields.io/badge/Version-1.34.3--2-informational?style=flat-square) ![AppVersion: 1.34.3](https://img.shields.io/badge/AppVersion-1.34.3-informational?style=flat-square)
+![Version: 1.35.0-1](https://img.shields.io/badge/Version-1.35.0--1-informational?style=flat-square) ![AppVersion: 1.35.0](https://img.shields.io/badge/AppVersion-1.35.0-informational?style=flat-square)
 
 A Helm chart for the Cluster Autoscaler.
 
@@ -15,6 +15,11 @@ A Helm chart for the Cluster Autoscaler.
 | azure.subscriptionID | string | `""` | ID of the subscription the VMSSs are contained in. |
 | azure.vmType | string | `"VMSS"` | Azure VM type. |
 | cluster.proxy | object | `{"http":"","https":"","noProxy":""}` | Global proxy settings. This value is set automatically. Do not overwrite it. |
+| clusterAPI.autoDiscovery.labels | list | `[]` | Label filters for CAPI autodiscovery (list of {key: "", value: ""} maps). |
+| clusterAPI.autoDiscovery.namespace | string | `""` | Namespace filter for CAPI autodiscovery. Defaults to the Release namespace if not set. |
+| clusterAPI.configMapsNamespace | string | `"kube-system"` | Namespace for leader-election/status configmaps on the workload cluster. |
+| clusterAPI.enabled | bool | `false` | Enable CAPI mode (kubeconfig-incluster). When enabled, cluster-autoscaler runs on the management cluster, accesses CAPI resources in-cluster, and connects to the workload cluster via a pre-existing kubeconfig secret. |
+| clusterAPI.kubeconfigSecret | string | `""` | Name of an existing Secret containing the workload cluster kubeconfig. |
 | clusterID | string | `"sc4l3"` | Cluster ID. This value is set automatically. Do not overwrite it. |
 | configmap.balanceSimilarNodeGroups | string | `"true"` | Detect similar node groups and balance the number of nodes between them. |
 | configmap.balancingIgnoreLabels | list | `["ip","vpc.amazonaws.com/eniConfig","giantswarm.io/machine-deployment","giantswarm.io/machine-pool","topology.ebs.csi.aws.com/zone","topology.k8s.aws/zone-id"]` | Specifies a label to ignore in addition to the basic and cloud-provider set of labels when comparing if two node groups are similar. |
@@ -29,7 +34,7 @@ A Helm chart for the Cluster Autoscaler.
 | global.podSecurityStandards.enforced | bool | `true` | If Pod Security Standards are being used or not. This value is set automatically. Do not overwrite it. |
 | image.name | string | `"giantswarm/cluster-autoscaler"` | Image name. |
 | image.registry | string | `"gsoci.azurecr.io"` | Registry host to pull images from. This value is set automatically. Do not overwrite it. |
-| image.tag | string | `"v1.34.3"` | Image tag. |
+| image.tag | string | `"v1.35.0"` | Image tag. |
 | isManagementCluster | bool | `false` | If the chart is installed on a management cluster or not. This value is set automatically. Do not overwrite it. |
 | managementCluster | string | `"sc4l3"` | Name of the management cluster this chart is installed on. This value is set automatically. Do not overwrite it. |
 | node.caBundlePath | string | `"/etc/ssl/certs/ca-certificates.crt"` | Host path of the CA bundle. |
@@ -37,6 +42,7 @@ A Helm chart for the Cluster Autoscaler.
 | podMonitor.additionalLabels | object | `{}` | Add extra labels to the PodMonitor resource |
 | provider | string | `"aws"` | Provider the cluster is running on. This value is set automatically. Do not overwrite it. |
 | proxy | object | `{"http":"","https":"","noProxy":""}` | Local proxy settings. Overrides global proxy settings. This value is set automatically. Do not overwrite it. |
+| rbac.clusterScoped | bool | `true` | When true (default), creates ClusterRole and ClusterRoleBinding. When false, uses namespace-scoped Role only (useful for CAPI mode). |
 | registry.domain | string | `"gsoci.azurecr.io"` | Registry host to pull images from. This value is set automatically. Do not overwrite it. |
 | resources | object | `{"limits":{"memory":"400Mi"},"requests":{"cpu":"50m","memory":"100Mi"}}` | Container resource requests and limits. |
 | securityContext | object | `{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"readOnlyRootFilesystem":true,"runAsGroup":1000,"runAsNonRoot":true,"runAsUser":1000,"seccompProfile":{"type":"RuntimeDefault"}}` | Container security context. |

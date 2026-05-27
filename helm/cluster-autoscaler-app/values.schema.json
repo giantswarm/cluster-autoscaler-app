@@ -54,39 +54,25 @@
         "clusterAPI": {
             "type": "object",
             "properties": {
+                "autoDiscovery": {
+                    "type": "object",
+                    "properties": {
+                        "labels": {
+                            "type": "array"
+                        },
+                        "namespace": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "configMapsNamespace": {
+                    "type": "string"
+                },
                 "enabled": {
                     "type": "boolean"
                 },
                 "kubeconfigSecret": {
                     "type": "string"
-                },
-                "configMapsNamespace": {
-                    "type": "string"
-                },
-                "autoDiscovery": {
-                    "type": "object",
-                    "properties": {
-                        "clusterName": {
-                            "type": "string"
-                        },
-                        "namespace": {
-                            "type": "string"
-                        },
-                        "labels": {
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "key": {
-                                        "type": "string"
-                                    },
-                                    "value": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        }
-                    }
                 }
             }
         },
@@ -194,14 +180,6 @@
         "provider": {
             "type": "string"
         },
-        "rbac": {
-            "type": "object",
-            "properties": {
-                "clusterScoped": {
-                    "type": "boolean"
-                }
-            }
-        },
         "proxy": {
             "type": "object",
             "properties": {
@@ -213,6 +191,14 @@
                 },
                 "noProxy": {
                     "type": "string"
+                }
+            }
+        },
+        "rbac": {
+            "type": "object",
+            "properties": {
+                "clusterScoped": {
+                    "type": "boolean"
                 }
             }
         },
