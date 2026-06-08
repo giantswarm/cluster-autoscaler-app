@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - RBAC: Grant access to `resourceslices.resource.k8s.io`.
+- Helpers: Trim `.` suffix.
 
 ## [1.35.0-1] - 2026-05-27
 
