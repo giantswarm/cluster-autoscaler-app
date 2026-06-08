@@ -136,6 +136,13 @@ rules:
   verbs:
   - get
   - update
+- apiGroups:
+  - resource.k8s.io
+  resources:
+  - resourceslices
+  verbs:
+  - list
+  - watch
 {{- if not .Values.global.podSecurityStandards.enforced }}
 - apiGroups:
   - extensions
