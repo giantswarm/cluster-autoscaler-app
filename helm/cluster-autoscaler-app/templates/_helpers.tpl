@@ -2,21 +2,21 @@
 Expand the name of the chart.
 */}}
 {{- define "cluster-autoscaler.name" -}}
-{{- .Chart.Name | trunc 63 | trimSuffix "-" }}
+{{- .Chart.Name | trunc 63 | trimSuffix "-" | trimSuffix "." }}
 {{- end }}
 
 {{/*
 Create a default fully qualified app name.
 */}}
 {{- define "cluster-autoscaler.fullname" -}}
-{{- .Release.Name | trimSuffix "-app" | trunc 63 | trimSuffix "-" }}
+{{- .Release.Name | trimSuffix "-app" | trunc 63 | trimSuffix "-" | trimSuffix "." }}
 {{- end }}
 
 {{/*
 Create chart name and version as used by the chart label.
 */}}
 {{- define "cluster-autoscaler.chart" -}}
-{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
+{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" | trimSuffix "." }}
 {{- end }}
 
 {{/*
