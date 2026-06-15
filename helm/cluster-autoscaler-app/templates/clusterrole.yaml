@@ -139,10 +139,13 @@ rules:
 - apiGroups:
   - resource.k8s.io
   resources:
+  - deviceclasses
+  - resourceclaims
   - resourceslices
   verbs:
   - list
   - watch
+  - get
 {{- if not .Values.global.podSecurityStandards.enforced }}
 - apiGroups:
   - extensions
