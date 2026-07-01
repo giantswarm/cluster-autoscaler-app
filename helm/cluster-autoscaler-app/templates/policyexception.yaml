@@ -1,9 +1,8 @@
-{{- if .Capabilities.APIVersions.Has "kyverno.io/v2/PolicyException" }}
 apiVersion: kyverno.io/v2
 kind: PolicyException
 metadata:
   name: {{ include "cluster-autoscaler.fullname" . }}
-  namespace: policy-exceptions
+  namespace: giantswarm
   labels:
     {{- include "cluster-autoscaler.labels" . | nindent 4 }}
   annotations:
@@ -29,4 +28,3 @@ spec:
     ruleNames:
     - restricted-volumes
     - autogen-restricted-volumes
-{{- end }}
