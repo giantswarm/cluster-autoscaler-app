@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Templates: Move PolicyException to `kube-system` namespace.
+
 ## [2.0.3] - 2026-07-07
 
 ### Changed
