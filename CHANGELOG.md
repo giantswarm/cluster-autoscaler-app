@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.4] - 2026-07-28
+
 ### Changed
 
 - Templates: Move PolicyException to `kube-system` namespace.
@@ -531,7 +533,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.3...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.4...HEAD
+[2.0.4]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.1...v2.0.2
 [2.0.1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.0...v2.0.1
