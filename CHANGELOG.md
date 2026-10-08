@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.5] - 2026-10-08
+
 ### Fixed
 
 - RBAC: Allow reading `infrastructure.cluster.x-k8s.io` resources when `clusterAPI.enabled` is set.
@@ -538,7 +540,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.4...HEAD
+[Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.5...HEAD
+[2.0.5]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.4...v2.0.5
 [2.0.4]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.1...v2.0.2
