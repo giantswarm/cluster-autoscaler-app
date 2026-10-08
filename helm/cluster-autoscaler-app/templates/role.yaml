@@ -48,6 +48,14 @@ rules:
   - get
   - patch
   - update
+- apiGroups:
+  - infrastructure.cluster.x-k8s.io
+  resources:
+  - '*'
+  verbs:
+  - get
+  - list
+  - watch
 {{- end }}
 {{- if ( not .Values.rbac.clusterScoped ) }}
 - apiGroups:
