@@ -20,6 +20,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Chart: Update to upstream v1.36.1.
 
+## [2.0.5] - 2026-10-08
+
+### Fixed
+
+- RBAC: Allow reading `infrastructure.cluster.x-k8s.io` resources when `clusterAPI.enabled` is set.
+- The `helm.sh/chart` label is valid for long chart versions: the 63-character cut trims the whole trailing run of `-`, `.` and `_`.
+
 ## [2.0.4] - 2026-07-28
 
 ### Changed
@@ -548,7 +555,8 @@ Note that with this release we start to align the versioning scheme to the upstr
 
 [Unreleased]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.1.1...HEAD
 [2.1.1]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.1.0...v2.1.1
-[2.1.0]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.4...v2.1.0
+[2.1.0]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.5...v2.1.0
+[2.0.5]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.4...v2.0.5
 [2.0.4]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.3...v2.0.4
 [2.0.3]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.2...v2.0.3
 [2.0.2]: https://github.com/giantswarm/cluster-autoscaler-app/compare/v2.0.1...v2.0.2
