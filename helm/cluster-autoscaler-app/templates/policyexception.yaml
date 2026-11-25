@@ -1,3 +1,4 @@
+{{- if and .Values.kyvernoPolicyExceptions.enabled .Values.kyvernoPolicyExceptions.legacy.enabled }}
 apiVersion: kyverno.io/v2
 kind: PolicyException
 metadata:
@@ -5,6 +6,7 @@ metadata:
   namespace: kube-system
   labels:
     {{- include "cluster-autoscaler.labels" . | nindent 4 }}
+    policy.giantswarm.io/migrated-to-cel: "true"
   annotations:
     "helm.sh/hook": pre-install,pre-upgrade
 spec:
@@ -28,3 +30,4 @@ spec:
     ruleNames:
     - restricted-volumes
     - autogen-restricted-volumes
+{{- end }}
