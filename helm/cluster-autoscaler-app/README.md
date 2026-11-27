@@ -36,6 +36,8 @@ A Helm chart for the Cluster Autoscaler.
 | image.registry | string | `"gsoci.azurecr.io"` | Registry host to pull images from. This value is set automatically. Do not overwrite it. |
 | image.tag | string | `"v1.37.0"` | Image tag. |
 | isManagementCluster | bool | `false` | If the chart is installed on a management cluster or not. This value is set automatically. Do not overwrite it. |
+| kyvernoPolicyExceptions.enabled | bool | `true` | Render the Kyverno PolicyExceptions. |
+| kyvernoPolicyExceptions.legacy.enabled | bool | `true` | Renders the kyverno.io/v2 PolicyException, which applies to ClusterPolicies only. Will be used as a global switch in a future release. |
 | managementCluster | string | `"sc4l3"` | Name of the management cluster this chart is installed on. This value is set automatically. Do not overwrite it. |
 | node.caBundlePath | string | `"/etc/ssl/certs/ca-certificates.crt"` | Host path of the CA bundle. |
 | node.nodeSelector | object | `{"node-role.kubernetes.io/control-plane":""}` | Node selector for the autoscaler pod. `control-plane` gets translated to `master` and vice versa depending on Kubernetes version. |

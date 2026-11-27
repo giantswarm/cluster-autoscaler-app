@@ -103,6 +103,13 @@ podMonitor:
   # -- Add extra labels to the PodMonitor resource
   additionalLabels: {}
 
+kyvernoPolicyExceptions:
+  # -- Render the Kyverno PolicyExceptions.
+  enabled: true
+  legacy:
+    # -- Renders the kyverno.io/v2 PolicyException, which applies to ClusterPolicies only. Will be used as a global switch in a future release.
+    enabled: true
+
 # Below are configuration values that you should not overwrite or set yourself.
 
 # -- Provider the cluster is running on.
